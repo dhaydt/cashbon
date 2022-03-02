@@ -40,7 +40,8 @@
                             <tr class="text-center">
                                 <th scope="col" class="sort" data-sort="name">No</th>
                                 <th scope="col" class="sort" data-sort="budget">Nama Project</th>
-                                <th scope="col" class="sort" data-sort="status">Deskripsi</th>
+                                <th scope="col" class="sort" data-sort="status">Pekerja</th>
+                                <th scope="col" class="sort" data-sort="status">Approver</th>
                                 <th scope="col" class="sort" data-sort="status">Nilai Project</th>
                                 <th scope="col" class="sort" data-sort="status">Total Cashbon</th>
                                 <th scope="col" class="sort" data-sort="completion">Aksi</th>
@@ -63,8 +64,17 @@
                                 </td>
                                 <td class="text-center">
                                     <span class="badge badge-dot mr-4">
-                                        {{-- <i class="bg-warning"></i> --}}
-                                        <span class="status">{{ $ad['description'] }}</span>
+                                        @foreach (json_decode($ad['pekerja']) as $p)
+                                        <span class="status capitalize badge badge-info">{{ $p->name }}</span>
+                                        @endforeach
+                                    </span>
+                                </td>
+
+                                <td class="text-center">
+                                    <span class="badge badge-dot mr-4">
+                                        @foreach (json_decode($ad['approver']) as $a)
+                                        <span class="status capitalize badge badge-warning">{{ $a->name }}</span>
+                                        @endforeach
                                     </span>
                                 </td>
                                 <td class="text-center">

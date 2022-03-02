@@ -40,9 +40,20 @@
                                             <input type="number" class="form-control" id="nilai" name="nilai">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="desc" class="form-label">Deskripsi project
-                                                <small>(opsional)</small></label>
-                                            <textarea class="form-control" id="desc" name="desc"></textarea>
+                                            <label for="desc" class="form-label w-100">Pekerja</label>
+                                            <select class="js-example-basic-multiple form-control w-100" name="pekerja[]" multiple="multiple">
+                                                @foreach ($worker as $w)
+                                                <option value="{{ $w['id'] }}">{{ $w['name'] }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="desc" class="form-label w-100">Approver</label>
+                                            <select class="js-example-basic-multiple2 form-control w-100" name="approver[]" multiple="multiple">
+                                                @foreach ($app as $a)
+                                                <option value="{{ $a['id'] }}">{{ $a['name'] }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -59,3 +70,11 @@
         </div>
     </div>
 </div>
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+            $('.js-example-basic-multiple2').select2();
+        });
+    </script>
+@endpush
