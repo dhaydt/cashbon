@@ -22,23 +22,40 @@
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                            <form action="{{ route('admin.project.store') }}" method="post">
+                            <form action="{{ route('admin.approver.store') }}" method="post">
                                 @csrf
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Data Approver</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Nama</label>
+                                            <input type="text" class="form-control" id="name" aria-describedby="name"
+                                                name="name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="phone" class="form-label">No. Handphone</label>
+                                            <input type="number" class="form-control" id="phone" name="phone">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="project" class="form-label">Proyek</label>
+                                            <select id="project" name="project" class="form-control">
+                                                <option value="">-- Pilih proyek pekerja --</option>
+                                                @foreach ($pro as $p)
+                                                <option value="{{ $p['name'] }}">{{ $p['name'] }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    ...
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </div>
                             </form>
                         </div>
                     </div>

@@ -7,6 +7,7 @@ use App\CPU\ImageManager;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Customer;
+use App\Models\Project;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,38 @@ class UserController extends Controller
         $admin = $admin->last()->paginate(Helpers::pagination_limit())->appends($query_param);
 
         return view('admin-views.admin.list', compact('admin', 'search'));
+    }
+
+    public function store(Request $request)
+    {
+        // dd($request);
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'project' => 'required',
+        ], [
+            'name.required' => 'Nama pekerja dibutuhkan!',
+            'phone.required' => 'Hp pekerja dibutuhkan!',
+            'project.required' => 'Proyek pekerja dibutuhkan!',
+        ]);
+
+        $check = Customer::where('phone', $request['phone'])->first();
+        if (isset($check)) {
+            Toastr::error('No Handphone sudah digunakan!');
+
+            return redirect()->route('admin.userCustomer');
+        }
+
+        $data = new Customer();
+        $data->name = $request['name'];
+        $data->project = $request['project'];
+        $data->phone = $request['phone'];
+        $data->password = bcrypt('12345678');
+        $data->save();
+
+        Toastr::success('Pekerja berhasil ditambahkan!');
+
+        return redirect()->route('admin.userCustomer');
     }
 
     public function profile()
@@ -120,9 +153,10 @@ class UserController extends Controller
         }
 
         session()->put('title', 'Daftar pekerja');
+        $pro = Project::orderBy('created_at', 'DESC')->get();
         $admin = $admin->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
 
-        return view('admin-views.customer.list', compact('admin', 'search'));
+        return view('admin-views.customer.list', compact('admin', 'search', 'pro'));
     }
 
     public function customerView($id)
@@ -131,5 +165,15 @@ class UserController extends Controller
         $user = Customer::where('id', $id)->first();
 
         return view('admin-views.customer.view.view', compact('user'));
+    }
+
+    public function destroy(Request $request)
+    {
+        // dd($request);
+        $data = Customer::where('id', $request['id'])->first();
+        $data->delete();
+        Toastr::info('Pekerja berhasil dihapus!');
+
+        return redirect()->back();
     }
 }

@@ -46,19 +46,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
         });
 
         // Approver route
-        Route::prefix('approv')->name('approver.')->group(function () {
+        Route::prefix('approver')->name('approver.')->group(function () {
             Route::get('/list', [ApproverController::class, 'index'])->name('list');
-            Route::post('/add-new', [BannerController::class, 'store'])->name('store');
-            Route::post('/delete', [BannerController::class, 'delete'])->name('delete');
-            Route::post('/status', [BannerController::class, 'status'])->name('status');
-            Route::post('/edit', [BannerController::class, 'edit'])->name('edit');
-            Route::post('/update', [BannerController::class, 'update'])->name('update');
+            Route::post('/add-new', [ApproverController::class, 'store'])->name('store');
+            Route::get('/delete', [ApproverController::class, 'destroy'])->name('delete');
+            Route::post('/status', [ApproverController::class, 'status'])->name('status');
+            Route::post('/edit', [ApproverController::class, 'edit'])->name('edit');
+            Route::post('/update', [ApproverController::class, 'update'])->name('update');
         });
 
+        // pekerja
         Route::prefix('customer')->name('customer.')->group(function () {
             Route::get('/list', [UserController::class, 'index'])->name('list');
             Route::post('/add-new', [UserController::class, 'store'])->name('store');
-            Route::post('/delete', [UserController::class, 'delete'])->name('delete');
+            Route::get('/delete', [UserController::class, 'destroy'])->name('delete');
             Route::post('/status', [UserController::class, 'status'])->name('status');
             Route::post('/edit', [UserController::class, 'edit'])->name('edit');
             Route::post('/update', [UserController::class, 'update'])->name('update');

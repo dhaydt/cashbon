@@ -68,19 +68,29 @@
                                 <td class="text-center">
                                     <span class="badge badge-dot mr-4">
                                         {{-- <i class="bg-warning"></i> --}}
-                                        <span class="status">{{ $ad['phone'] }}</span>
+                                        <span class="status">{{ $ad['project'] }}</span>
                                     </span>
                                 </td>
                                 <td class="text-center">
                                     <span class="badge badge-dot mr-4">
                                         {{-- <i class="bg-warning"></i> --}}
-                                        <span class="status">{{ $ad['phone'] }}</span>
+                                        @if ($ad['cashbon'] == '')
+                                        <span class="status badge badge-danger text-danger">Belum ada</span>
+                                        @else
+                                        <span class="status badge badge-info">{{ $ad['cashbon'] }}</span>
+                                        @endif
                                     </span>
                                 </td>
                                 <td>
-                                    <div class="d-flex align-items-center justify-content-center">
+                                    <div class="d-flex align-items-center justify-content-evenly">
                                         <a href="{{ route('admin.userCustomerView', ['id' => $ad['id']]) }}" class="viewUser">
                                             <i class="far fa-eye"></i>
+                                        </a>
+                                        <a href="{{ route('admin.userCustomerView', ['id' => $ad['id']]) }}" class="viewUser">
+                                            <i class="far fa-edit text-info"></i>
+                                        </a>
+                                        <a href="{{ route('admin.customer.delete', ['id' => $ad['id']]) }}" class="viewUser">
+                                            <i class="fas fa-trash text-danger"></i>
                                         </a>
                                     </div>
                                 </td>

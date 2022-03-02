@@ -27,23 +27,11 @@ projects or assigned tasks'),
     <div class="row justify-content-center">
         <div class="col-xl-8 order-xl-1">
             <div class="card bg-secondary shadow">
-                <div class="card-header bg-white border-0">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-3 order-lg-2">
-                            <div class="card-profile-image">
-                                <a href="javascript:">
-                                    <img id="imgPict" src="{{ asset('storage/profile/'.$user->image) }}"
-                                        class="rounded-circle">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="card-body">
                     <form method="post" action="{{ route('admin.adminInfo') }}" autocomplete="off">
                         @csrf
                         @method('put')
-                        <h6 class="heading-small text-muted mb-4">{{ __($user->name.' information') }}</h6>
+                        <h6 class="heading-small text-muted mb-4">{{ __('Profil '.$user->name) }}</h6>
                         @if (session('status'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('status') }}
@@ -55,7 +43,7 @@ projects or assigned tasks'),
 
                         <div class="pl-lg-4">
                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
+                                <label class="form-control-label" for="input-name">{{ __('Nama') }}</label>
                                 <input type="text" readonly name="name" id="input-name"
                                     class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                     placeholder="{{ __('Name') }}"
@@ -69,7 +57,7 @@ projects or assigned tasks'),
                             </div>
 
                             <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
-                                <label class="form-control-label" for="input-phonr">{{ __('Phone') }}</label>
+                                <label class="form-control-label" for="input-phonr">{{ __('No handphone') }}</label>
                                 <input type="number" readonly name="phone" id="input-phone"
                                     class="form-control form-control-alternative{{ $errors->has('phone') ? ' is-invalid' : '' }}"
                                     placeholder="{{ __('Phone') }}"
@@ -81,16 +69,16 @@ projects or assigned tasks'),
                                 </span>
                                 @endif
                             </div>
-                            <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
+                            <div class="form-group{{ $errors->has('project') ? ' has-danger' : '' }}">
+                                <label class="form-control-label" for="input-project">{{ __('Project') }}</label>
                                 <input type="email" readonly name="email" id="input-email"
-                                    class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                    class="form-control form-control-alternative{{ $errors->has('project') ? ' is-invalid' : '' }}"
                                     placeholder="{{ __('Email') }}"
-                                    value="{{ old('email', $user->email) }}" required>
+                                    value="{{ old('project', $user->project) }}" required>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('project'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('email') }}</strong>
+                                    <strong>{{ $errors->first('project') }}</strong>
                                 </span>
                                 @endif
                             </div>

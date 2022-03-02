@@ -78,9 +78,15 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <div class="d-flex align-items-center justify-content-center">
+                                    <div class="d-flex align-items-center justify-content-evenly">
                                         <a href="{{ route('admin.userCustomerView', ['id' => $ad['id']]) }}" class="viewUser">
                                             <i class="far fa-eye"></i>
+                                        </a>
+                                        <a href="{{ route('admin.userCustomerView', ['id' => $ad['id']]) }}" class="viewUser">
+                                            <i class="far fa-edit text-info"></i>
+                                        </a>
+                                        <a href="{{ route('admin.approver.delete', ['id' => $ad['id']]) }}" class="viewUser">
+                                            <i class="fas fa-trash text-danger"></i>
                                         </a>
                                     </div>
                                 </td>

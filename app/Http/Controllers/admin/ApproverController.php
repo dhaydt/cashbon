@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\CPU\Helpers;
 use App\Http\Controllers\Controller;
 use App\Models\Approver;
+use App\Models\Project;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class ApproverController extends Controller
@@ -34,8 +36,9 @@ class ApproverController extends Controller
 
         session()->put('title', 'Daftar Approver');
         $admin = $admin->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
+        $pro = Project::orderBy('created_at', 'DESC')->get();
 
-        return view('admin-views.approver.list', compact('admin', 'search'));
+        return view('admin-views.approver.list', compact('admin', 'search', 'pro'));
     }
 
     /**
@@ -54,17 +57,46 @@ class ApproverController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'project' => 'required',
+        ], [
+            'name.required' => 'Nama pekerja dibutuhkan!',
+            'phone.required' => 'Hp pekerja dibutuhkan!',
+            'project.required' => 'Proyek pekerja dibutuhkan!',
+        ]);
+
+        $check = Approver::where('phone', $request['phone'])->first();
+        if (isset($check)) {
+            Toastr::error('No Handphone sudah digunakan!');
+
+            return redirect()->route('admin.approver.list');
+        }
+
+        $data = new Approver();
+        $data->name = $request['name'];
+        $data->project = $request['project'];
+        $data->phone = $request['phone'];
+        $data->password = bcrypt('87654321');
+        $data->save();
+
+        Toastr::success('Approver berhasil ditambahkan!');
+
+        return redirect()->route('admin.approver.list');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
+        // dd($request);
+        $data = Approver::where('id', $request['id'])->first();
+
+        return view('admin-views.approver.view.view', compact('data'));
     }
 
     /**
@@ -81,22 +113,33 @@ class ApproverController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param int $id
-     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        // dd($request);
+        $project = Approver::where('id', $request['id'])->first();
+        $project->name = $request['name'];
+        $project->project = $request['project'];
+        $project->phone = $request['phone'];
+        $project->save();
+        Toastr::success('Approver berhasil diubah!');
+
+        return redirect()->route('admin.approver.list');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        // dd($request);
+        $data = Approver::where('id', $request['id'])->first();
+        $data->delete();
+        Toastr::info('Approver berhasil dihapus!');
+
+        return redirect()->back();
     }
 }
