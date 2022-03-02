@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CustomerMiddleware
+class ApproverMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +16,7 @@ class CustomerMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->tokenCan('role:customer')) {
+        if (auth()->user()->tokenCan('role:approver')) {
             return $next($request);
         }
 
