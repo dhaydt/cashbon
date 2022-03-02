@@ -95,10 +95,12 @@
                                             class="viewUser">
                                             <i class="far fa-eye"></i>
                                         </a>
-                                        <a type="button" class="viewUser" data-bs-toggle="modal" data-bs-target="#modalEdit{{ $ad['id'] }}">
+                                        <a type="button" class="viewUser" data-bs-toggle="modal"
+                                            data-bs-target="#modalEdit{{ $ad['id'] }}">
                                             <i class="fas fa-edit text-info"></i>
                                         </a>
-                                        <a href="{{ route('admin.project.delete', ['id' => $ad['id']]) }}" class="viewUser">
+                                        <a href="{{ route('admin.project.delete', ['id' => $ad['id']]) }}"
+                                            class="viewUser">
                                             <i class="fas fa-trash text-danger"></i>
                                         </a>
                                     </div>
@@ -109,37 +111,74 @@
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEdit{{ $ad['id'] }}Label"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
-                                    <form action="{{ route('admin.project.update', ['id' => $ad['id']]) }}" method="post">
+                                    <form action="{{ route('admin.project.update', ['id' => $ad['id']]) }}"
+                                        method="post">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $ad['id'] }}">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalEdit{{ $ad['id'] }}Label">Ubah proyek {{ $ad['name'] }}</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label for="name" class="form-label">Nama proyek</label>
-                                                <input type="text" value="{{ $ad['name'] }}" class="form-control" id="name" aria-describedby="name"
-                                                    name="name">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalEdit{{ $ad['id'] }}Label">Ubah proyek
+                                                    {{ $ad['name'] }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="nilai" class="form-label">Nilai project (Rp.)</label>
-                                                <input type="number" value="{{ $ad['nilai_project'] }}" class="form-control" id="nilai" name="nilai">
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label for="name" class="form-label">Nama project</label>
+                                                    <input type="text" class="form-control" id="name"
+                                                        value="{{ $ad['name'] }}" aria-describedby="name" name="name">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="name" class="form-label">Jenis pekeerjaan</label>
+                                                    <input type="text" class="form-control" id="jenis"
+                                                        value="{{ $ad['jenis'] }}" aria-describedby="jenis"
+                                                        name="jenis">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="nilai" class="form-label">Nilai project</label>
+                                                    <input type="number" class="form-control"
+                                                        value="{{ $ad['nilai_project'] }}" id="nilai" name="nilai">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="nomor" class="form-label">Nomor kontrak</label>
+                                                    <input type="text" class="form-control" id="nomor"
+                                                        value="{{ $ad['nomor'] }}" name="nomor">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="desc" class="form-label w-100">Pekerja</label>
+                                                    @php ($pek = json_decode($ad['pekerja']))
+                                                    <select class="js-example-basic-multiple form-control w-100"
+                                                        name="pekerja[]" multiple="multiple">
+                                                        @foreach (($worker) as $w)
+                                                        <option value="{{ $w['id'] }}" @foreach ($pek as $p)
+                                                            @if ($w['id'] == $p->id)
+                                                                selected
+                                                            @endif
+                                                        @endforeach>{{ $w['name'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="desc" class="form-label w-100">Approver</label>
+                                                    @php ($prov = json_decode($ad['approver']))
+                                                    <select class="js-example-basic-multiple2 form-control w-100"
+                                                        name="approver[]" multiple="multiple">
+                                                        @foreach ($app as $a)
+                                                        <option value="{{ $a['id'] }}" @foreach ($prov as $p)
+                                                        @if ($a['id'] == $p->id)
+                                                            selected
+                                                        @endif
+                                                    @endforeach>{{ $a['name'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="desc" class="form-label">Deskripsi project
-                                                    <small>(opsional)</small></label>
-                                                <textarea class="form-control" id="desc" name="desc">{{ $ad['description'] }}</textarea>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Keluar</button>
+                                                <button type="submit" class="btn btn-primary">Simpan perubahan</button>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Keluar</button>
-                                            <button type="submit" class="btn btn-primary">Simpan perubahan</button>
-                                        </div>
-                                    </div>
                                     </form>
                                 </div>
                             </div>

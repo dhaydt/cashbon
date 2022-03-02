@@ -63,11 +63,15 @@ class ProjectController extends Controller
         $request->validate([
             'name' => 'required',
             'nilai' => 'required',
+            'jenis' => 'required',
+            'nomor' => 'required',
             'pekerja' => 'required',
             'approver' => 'required',
         ], [
             'nilai.required' => 'Nilai project dibutuhkan!',
-            'name.required' => 'Nama project dibbutuhkan!',
+            'name.required' => 'Nama project dibutuhkan!',
+            'jenis.required' => 'Jenis pekerjaan dibutuhkan!',
+            'nomor.required' => 'Nomor kontrak dibutuhkan!',
             'pekerja.required' => 'Pekerja project dibbutuhkan!',
             'approver.required' => 'Approver project dibbutuhkan!',
         ]);
@@ -78,6 +82,7 @@ class ProjectController extends Controller
             $phone = $work->phone;
             $name = $work->name;
             $data = [
+                'id' => $p,
                 'phone' => $phone,
                 'name' => $name,
             ];
@@ -86,10 +91,11 @@ class ProjectController extends Controller
 
         $app = [];
         foreach ($request['approver'] as $a) {
-            $work = Approver::where('id', $p)->first();
+            $work = Approver::where('id', $a)->first();
             $phone = $work->phone;
             $name = $work->name;
             $data = [
+                'id' => $a,
                 'phone' => $phone,
                 'name' => $name,
             ];
@@ -99,6 +105,8 @@ class ProjectController extends Controller
         $data = new Project();
         $data->name = $request['name'];
         $data->nilai_project = $request['nilai'];
+        $data->jenis = $request['jenis'];
+        $data->nomor = $request['nomor'];
         $data->pekerja = json_encode($worker);
         $data->approver = json_encode($app);
         $data->save();
@@ -140,10 +148,38 @@ class ProjectController extends Controller
     public function update(Request $request)
     {
         // dd($request);
+        $worker = [];
+        foreach ($request['pekerja'] as $p) {
+            $work = Customer::where('id', $p)->first();
+            $phone = $work->phone;
+            $name = $work->name;
+            $data = [
+                'id' => $p,
+                'phone' => $phone,
+                'name' => $name,
+            ];
+            array_push($worker, $data);
+        }
+
+        $app = [];
+        foreach ($request['approver'] as $a) {
+            $work = Approver::where('id', $a)->first();
+            $phone = $work->phone;
+            $name = $work->name;
+            $data = [
+                'id' => $a,
+                'phone' => $phone,
+                'name' => $name,
+            ];
+            array_push($app, $data);
+        }
         $project = Project::where('id', $request['id'])->first();
         $project->name = $request['name'];
         $project->nilai_project = $request['nilai'];
-        $project->description = $request['desc'];
+        $project->pekerja = json_encode($worker);
+        $project->approver = json_encode($app);
+        $project->jenis = $request['jenis'];
+        $project->nomor = $request['nomor'];
         $project->save();
         Toastr::success('Proyek berhasil diubah!');
 

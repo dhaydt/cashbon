@@ -31,13 +31,22 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="mb-3">
-                                            <label for="name" class="form-label">Nama proyek</label>
+                                            <label for="name" class="form-label">Nama project</label>
                                             <input type="text" class="form-control" id="name" aria-describedby="name"
                                                 name="name">
                                         </div>
                                         <div class="mb-3">
+                                            <label for="name" class="form-label">Jenis pekeerjaan</label>
+                                            <input type="text" class="form-control" id="jenis" aria-describedby="jenis"
+                                                name="jenis">
+                                        </div>
+                                        <div class="mb-3">
                                             <label for="nilai" class="form-label">Nilai project</label>
                                             <input type="number" class="form-control" id="nilai" name="nilai">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nomor" class="form-label">Nomor kontrak</label>
+                                            <input type="text" class="form-control" id="nomor" name="nomor">
                                         </div>
                                         <div class="mb-3">
                                             <label for="desc" class="form-label w-100">Pekerja</label>
