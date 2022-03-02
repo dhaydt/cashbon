@@ -11,3 +11,10 @@
 .select2-container--default .select2-selection--multiple{
     padding: 10px !important;
 }
+.row-json{
+    margin-left: 5px;
+    padding-bottom: 10px;
+    border-left: 2px solid #e9ecef;
+    justify-content: end;
+    margin-bottom: 10px;
+}

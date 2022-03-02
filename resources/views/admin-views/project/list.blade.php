@@ -34,7 +34,7 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="table-responsive" style="overflow: hidden">
+                <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr class="text-center">

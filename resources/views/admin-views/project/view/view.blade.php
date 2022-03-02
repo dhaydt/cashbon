@@ -23,7 +23,7 @@ projects or assigned tasks'),
 'class' => 'col-lg-7'
 ])
 
-<div class="container-fluid mt--7">
+<div class="container-fluid mt--7 mb-7">
     <div class="row justify-content-center">
         <div class="col-xl-8 order-xl-1">
             <div class="card bg-secondary shadow">
@@ -42,50 +42,64 @@ projects or assigned tasks'),
                         @endif
 
                         <div class="pl-lg-4">
-                            <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-name">{{ __('Nilai_proyek') }}</label>
                                 <input type="text" readonly name="name" id="input-name"
-                                    class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                    placeholder="{{ __('Name') }}"
-                                    value="{{ old('name', $data->name) }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('name') }}</strong>
-                                </span>
-                                @endif
+                                    class="form-control form-control-alternative"
+                                    value="{{ old('name', $data->nilai_project) }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-name">{{ __('Total_kasbon') }}</label>
+                                <input type="text" readonly class="form-control form-control-alternative"
+                                    value="{{ old('name', $data->total_cashbon) }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-name">{{ __('Pekerja') }}</label>
+                                <div class="row row-json">
+                                    <div class="col-6">
+                                        <label for="form-control-label">Nama Pekerja</label>
+                                    </div>
+                                    <div class="col-md-5 col-6">
+                                        <label for="form-control-label">No. Handphone</label>
+                                    </div>
+                                    @foreach (json_decode($data->pekerja) as $p)
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <input type="text" readonly class="form-control" value="{{ $p->name }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-6">
+                                            <div class="form-group">
+                                                <input type="text" readonly class="form-control" value="{{ $p->phone }}">
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
-                                <label class="form-control-label" for="input-phonr">{{ __('Phone') }}</label>
-                                <input type="number" readonly name="phone" id="input-phone"
-                                    class="form-control form-control-alternative{{ $errors->has('phone') ? ' is-invalid' : '' }}"
-                                    placeholder="{{ __('Phone') }}"
-                                    value="{{ old('phone', $data->phone) }}" required autofocus>
-
-                                @if ($errors->has('phone'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('phone') }}</strong>
-                                </span>
-                                @endif
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-name">{{ __('Approver') }}</label>
+                                <div class="row row-json">
+                                    <div class="col-6">
+                                        <label for="form-control-label">Nama Approver</label>
+                                    </div>
+                                    <div class="col-md-5 col-6">
+                                        <label for="form-control-label">No. Handphone</label>
+                                    </div>
+                                    @foreach (json_decode($data->approver) as $p)
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <input type="text" readonly class="form-control" value="{{ $p->name }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-6">
+                                            <div class="form-group">
+                                                <input type="text" readonly class="form-control" value="{{ $p->phone }}">
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
-                            <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
-                                <input type="email" readonly name="email" id="input-email"
-                                    class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                    placeholder="{{ __('Email') }}"
-                                    value="{{ old('email', $data->email) }}" required>
-
-                                @if ($errors->has('email'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-{{--
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
-                            </div> --}}
                         </div>
                     </form>
                 </div>
