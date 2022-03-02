@@ -1,0 +1,45 @@
+<div class="header bg-primary pb-8 pt-3 pt-md-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4 mb-4">
+                <div class="col-lg-6 col-7">
+                    {{-- <h6 class="h2 text-white d-inline-block mb-0">Tables</h6> --}}
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-2">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark mb-0">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Proyek</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-lg-6 col-5 d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
+                        Tambahkan proyek
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Understood</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
