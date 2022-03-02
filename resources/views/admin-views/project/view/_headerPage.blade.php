@@ -12,9 +12,8 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-2">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="javascript:">User Section</a></li>
-                            <li class="breadcrumb-item" aria-current="page"><a href="{{ route('admin.userCustomer') }}">Customers</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ $user->name }}</li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="{{ route('admin.project.list') }}">Daftar proyek</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $data->name }}</li>
                         </ol>
                     </nav>
                 </div>

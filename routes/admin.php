@@ -37,11 +37,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Project route
         Route::prefix('project')->name('project.')->group(function () {
             Route::get('/list', [ProjectController::class, 'index'])->name('list');
-            Route::post('/add-new', [BannerController::class, 'store'])->name('store');
-            Route::post('/delete', [BannerController::class, 'delete'])->name('delete');
-            Route::post('/status', [BannerController::class, 'status'])->name('status');
-            Route::post('/edit', [BannerController::class, 'edit'])->name('edit');
-            Route::post('/update', [BannerController::class, 'update'])->name('update');
+            Route::post('/store', [ProjectController::class, 'store'])->name('store');
+            Route::post('/update/', [ProjectController::class, 'update'])->name('update');
+            Route::get('/view', [ProjectController::class, 'show'])->name('view');
+            Route::post('/status', [ProjectController::class, 'status'])->name('status');
+            Route::post('/edit', [ProjectController::class, 'edit'])->name('edit');
+            Route::get('/delete', [ProjectController::class, 'destroy'])->name('delete');
         });
 
         // Approver route
@@ -52,6 +53,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/status', [BannerController::class, 'status'])->name('status');
             Route::post('/edit', [BannerController::class, 'edit'])->name('edit');
             Route::post('/update', [BannerController::class, 'update'])->name('update');
+        });
+
+        Route::prefix('customer')->name('customer.')->group(function () {
+            Route::get('/list', [UserController::class, 'index'])->name('list');
+            Route::post('/add-new', [UserController::class, 'store'])->name('store');
+            Route::post('/delete', [UserController::class, 'delete'])->name('delete');
+            Route::post('/status', [UserController::class, 'status'])->name('status');
+            Route::post('/edit', [UserController::class, 'edit'])->name('edit');
+            Route::post('/update', [UserController::class, 'update'])->name('update');
         });
 
         // System Route

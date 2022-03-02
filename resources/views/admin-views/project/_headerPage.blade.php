@@ -21,21 +21,37 @@
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                            <form action="{{ route('admin.project.store') }}" method="post">
+                                @csrf
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Tambah Proyek</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Nama proyek</label>
+                                            <input type="text" class="form-control" id="name" aria-describedby="name"
+                                                name="name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nilai" class="form-label">Nilai project</label>
+                                            <input type="number" class="form-control" id="nilai" name="nilai">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="desc" class="form-label">Deskripsi project
+                                                <small>(opsional)</small></label>
+                                            <textarea class="form-control" id="desc" name="desc"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    ...
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Understood</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -22,6 +22,8 @@
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
+                            <form action="{{ route('admin.project.store') }}" method="post">
+                                @csrf
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
@@ -34,9 +36,10 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Understood</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

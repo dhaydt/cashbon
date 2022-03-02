@@ -1,0 +1,7 @@
+.capitalize{
+    text-transform: capitalize !important;
+}
+
+.badge {
+    font-size: 14px;
+}

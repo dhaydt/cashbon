@@ -7,68 +7,70 @@
         font-size: 22px;
         color: #5e72e4;
     }
+
     .card-footer {
         /* background-color: grey; */
     }
+
     .card-footer .row.justify-content-center .col-sm-auto .d-flex nav .flex {
         display: none;
     }
-    .card-footer > div > div > div > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:nth-child(1) > p {
+
+    .card-footer>div>div>div>nav>div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between>div:nth-child(1)>p {
         display: none;
     }
-    .card-footer > div > div > div > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:nth-child(2) > span {
+
+    .card-footer>div>div>div>nav>div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between>div:nth-child(2)>span {
         display: flex;
     }
 
-    .card-footer > div > div > div > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:nth-child(2) > span span:first-child span svg
-    {
+    .card-footer>div>div>div>nav>div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between>div:nth-child(2)>span span:first-child span svg {
         margin-right: 15px;
     }
-    .card-footer > div > div > div > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:nth-child(2) > span > a:first-child svg{
 
-    }
-
+    .card-footer>div>div>div>nav>div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between>div:nth-child(2)>span>a:first-child svg {}
 </style>
 <div class="container-fluid mt--8">
     <div class="row">
         <div class="col">
             <div class="card">
                 <div class="table-responsive" style="overflow: hidden">
-                    <table class="table align-items-center table-flush" >
+                    <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr class="text-center">
-                                <th scope="col" class="sort" data-sort="name">ID</th>
+                                <th scope="col" class="sort" data-sort="name">No</th>
                                 <th scope="col" class="sort" data-sort="budget">Nama Project</th>
+                                <th scope="col" class="sort" data-sort="status">Deskripsi</th>
+                                <th scope="col" class="sort" data-sort="status">Nilai Project</th>
                                 <th scope="col" class="sort" data-sort="status">Total Cashbon</th>
-                                <th scope="col" class="sort" data-sort="status">Tanggal mulai</th>
-                                <th scope="col" class="sort" data-sort="status">Tanggal berakhir</th>
                                 <th scope="col" class="sort" data-sort="completion">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
+                            @php($no = 1)
                             @foreach ($admin as $ad)
                             <tr>
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <div class="media-body text-center">
-                                            <span class="name mb-0 text-sm">{{ $ad['id'] }}</span>
+                                            <span class="name mb-0 text-sm">{{ $no++ }}</span>
                                         </div>
                                     </div>
                                 </th>
-                                <td class="budget text-center">
+                                <td class="budget text-center capitalize">
                                     {{ $ad['name'] }}
                                 </td>
                                 <td class="text-center">
                                     <span class="badge badge-dot mr-4">
                                         {{-- <i class="bg-warning"></i> --}}
-                                        <span class="status">{{ $ad['phone'] }}</span>
+                                        <span class="status">{{ $ad['description'] }}</span>
                                     </span>
                                 </td>
                                 <td class="text-center">
                                     <span class="badge badge-dot mr-4">
                                         {{-- <i class="bg-warning"></i> --}}
-                                        <span class="status">{{ $ad['phone'] }}</span>
+                                        <span class="status badge badge-success">@currency($ad['nilai_project'])</span>
                                     </span>
                                 </td>
                                 <td class="text-center">
@@ -78,13 +80,59 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <a href="{{ route('admin.userCustomerView', ['id' => $ad['id']]) }}" class="viewUser">
+                                    <div class="d-flex align-items-center justify-content-evenly">
+                                        <a href="{{ route('admin.project.view', ['id' => $ad['id']]) }}"
+                                            class="viewUser">
                                             <i class="far fa-eye"></i>
+                                        </a>
+                                        <a type="button" class="viewUser" data-bs-toggle="modal" data-bs-target="#modalEdit{{ $ad['id'] }}">
+                                            <i class="fas fa-edit text-info"></i>
+                                          </a>
+                                        <a href="{{ route('admin.project.delete', ['id' => $ad['id']]) }}" class="viewUser">
+                                            <i class="fas fa-trash text-danger"></i>
                                         </a>
                                     </div>
                                 </td>
                             </tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="modalEdit{{ $ad['id'] }}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEdit{{ $ad['id'] }}Label"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <form action="{{ route('admin.project.update', ['id' => $ad['id']]) }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $ad['id'] }}">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalEdit{{ $ad['id'] }}Label">Ubah proyek {{ $ad['name'] }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="name" class="form-label">Nama proyek</label>
+                                                <input type="text" value="{{ $ad['name'] }}" class="form-control" id="name" aria-describedby="name"
+                                                    name="name">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="nilai" class="form-label">Nilai project (Rp.)</label>
+                                                <input type="number" value="{{ $ad['nilai_project'] }}" class="form-control" id="nilai" name="nilai">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="desc" class="form-label">Deskripsi project
+                                                    <small>(opsional)</small></label>
+                                                <textarea class="form-control" id="desc" name="desc">{{ $ad['description'] }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Keluar</button>
+                                            <button type="submit" class="btn btn-primary">Simpan perubahan</button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
                             @endforeach
 
                         </tbody>

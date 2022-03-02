@@ -1,4 +1,4 @@
-@section('title', 'Deatils Customer')
+@section('title', 'Detail Project')
 @extends('layouts.backend.app')
 <style>
     #changeImg {
@@ -11,13 +11,13 @@
         background-color: #fff;
         margin-top: -35px;
     }
-    .user-name {
+    .data-name {
         text-transform: capitalize;
     }
 </style>
 @section('content')
-@include('admin-views.customer.view._headerPage', [
-'title' => __('Hello') . ' '. $user->name,
+@include('admin-views.project.view._headerPage', [
+'title' => __('Hello') . ' '. $data->name,
 'description' => __('This is your profile page. You can see the progress you\'ve made with your work and manage your
 projects or assigned tasks'),
 'class' => 'col-lg-7'
@@ -27,23 +27,11 @@ projects or assigned tasks'),
     <div class="row justify-content-center">
         <div class="col-xl-8 order-xl-1">
             <div class="card bg-secondary shadow">
-                <div class="card-header bg-white border-0">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-3 order-lg-2">
-                            <div class="card-profile-image">
-                                <a href="javascript:">
-                                    <img id="imgPict" src="{{ asset('storage/profile/'.$user->image) }}"
-                                        class="rounded-circle">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="card-body">
                     <form method="post" action="{{ route('admin.adminInfo') }}" autocomplete="off">
                         @csrf
                         @method('put')
-                        <h6 class="heading-small text-muted mb-4">{{ __($user->name.' information') }}</h6>
+                        <h6 class="heading-small text-muted mb-4">{{ __($data->name) }}</h6>
                         @if (session('status'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('status') }}
@@ -59,7 +47,7 @@ projects or assigned tasks'),
                                 <input type="text" readonly name="name" id="input-name"
                                     class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                     placeholder="{{ __('Name') }}"
-                                    value="{{ old('name', $user->name) }}" required autofocus>
+                                    value="{{ old('name', $data->name) }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
@@ -73,7 +61,7 @@ projects or assigned tasks'),
                                 <input type="number" readonly name="phone" id="input-phone"
                                     class="form-control form-control-alternative{{ $errors->has('phone') ? ' is-invalid' : '' }}"
                                     placeholder="{{ __('Phone') }}"
-                                    value="{{ old('phone', $user->phone) }}" required autofocus>
+                                    value="{{ old('phone', $data->phone) }}" required autofocus>
 
                                 @if ($errors->has('phone'))
                                 <span class="invalid-feedback" role="alert">
@@ -86,7 +74,7 @@ projects or assigned tasks'),
                                 <input type="email" readonly name="email" id="input-email"
                                     class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                     placeholder="{{ __('Email') }}"
-                                    value="{{ old('email', $user->email) }}" required>
+                                    value="{{ old('email', $data->email) }}" required>
 
                                 @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\CPU\Helpers;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -32,7 +33,7 @@ class ProjectController extends Controller
             $admin = new Project();
         }
 
-        session()->put('title', 'Daftar pekerja');
+        session()->put('title', 'Daftar proyek');
         $admin = $admin->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
 
         return view('admin-views.project.list', compact('admin', 'search'));
@@ -54,17 +55,36 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'nilai' => 'required',
+        ], [
+            'nilai.required' => 'Nilai project dibutuhkan!',
+            'name.required' => 'Nama project dibbutuhkan!',
+        ]);
+
+        $data = new Project();
+        $data->name = $request['name'];
+        $data->nilai_project = $request['nilai'];
+        $data->description = $request['desc'];
+        $data->save();
+
+        Toastr::success('Proyek berhasil ditambahkan!');
+
+        return redirect()->route('admin.project.list');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
+        // dd($request);
+        $data = Project::where('id', $request['id'])->first();
+
+        return view('admin-views.project.view.view', compact('data'));
     }
 
     /**
@@ -81,22 +101,33 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param int $id
-     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        // dd($request);
+        $project = Project::where('id', $request['id'])->first();
+        $project->name = $request['name'];
+        $project->nilai_project = $request['nilai'];
+        $project->description = $request['desc'];
+        $project->save();
+        Toastr::success('Proyek berhasil diubah!');
+
+        return redirect()->route('admin.project.list');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        // dd($request);
+        $data = Project::where('id', $request['id'])->first();
+        $data->delete();
+        Toastr::info('Proyek berhasil dihapus!');
+
+        return redirect()->back();
     }
 }

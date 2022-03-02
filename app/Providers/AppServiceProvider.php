@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\CPU\Helpers;
 use App\Models\BusinessSetting;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -30,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Blade::directive('currency', function ($expression) {
+            return "Rp. <?php echo number_format($expression,0,',','.'); ?>";
+        });
+
         try {
             $web = BusinessSetting::all();
             $settings = Helpers::get_settings($web, 'colors');
