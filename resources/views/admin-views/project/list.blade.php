@@ -87,7 +87,7 @@
                                         </a>
                                         <a type="button" class="viewUser" data-bs-toggle="modal" data-bs-target="#modalEdit{{ $ad['id'] }}">
                                             <i class="fas fa-edit text-info"></i>
-                                          </a>
+                                        </a>
                                         <a href="{{ route('admin.project.delete', ['id' => $ad['id']]) }}" class="viewUser">
                                             <i class="fas fa-trash text-danger"></i>
                                         </a>

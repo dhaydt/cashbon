@@ -40,15 +40,6 @@
                                             <label for="phone" class="form-label">No. Handphone</label>
                                             <input type="number" class="form-control" id="phone" name="phone">
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="project" class="form-label">Proyek</label>
-                                            <select id="project" name="project" class="form-control">
-                                                <option value="">-- Pilih proyek pekerja --</option>
-                                                @foreach ($pro as $p)
-                                                <option value="{{ $p['name'] }}">{{ $p['name'] }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"

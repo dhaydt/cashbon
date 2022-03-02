@@ -60,11 +60,9 @@ class ApproverController extends Controller
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
-            'project' => 'required',
         ], [
             'name.required' => 'Nama pekerja dibutuhkan!',
             'phone.required' => 'Hp pekerja dibutuhkan!',
-            'project.required' => 'Proyek pekerja dibutuhkan!',
         ]);
 
         $check = Approver::where('phone', $request['phone'])->first();
@@ -76,7 +74,7 @@ class ApproverController extends Controller
 
         $data = new Approver();
         $data->name = $request['name'];
-        $data->project = $request['project'];
+        $data->project = json_encode([]);
         $data->phone = $request['phone'];
         $data->password = bcrypt('87654321');
         $data->save();
@@ -120,7 +118,6 @@ class ApproverController extends Controller
         // dd($request);
         $project = Approver::where('id', $request['id'])->first();
         $project->name = $request['name'];
-        $project->project = $request['project'];
         $project->phone = $request['phone'];
         $project->save();
         Toastr::success('Approver berhasil diubah!');

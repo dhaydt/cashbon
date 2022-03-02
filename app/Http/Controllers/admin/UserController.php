@@ -43,11 +43,9 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
-            'project' => 'required',
         ], [
             'name.required' => 'Nama pekerja dibutuhkan!',
             'phone.required' => 'Hp pekerja dibutuhkan!',
-            'project.required' => 'Proyek pekerja dibutuhkan!',
         ]);
 
         $check = Customer::where('phone', $request['phone'])->first();
@@ -59,12 +57,24 @@ class UserController extends Controller
 
         $data = new Customer();
         $data->name = $request['name'];
-        $data->project = $request['project'];
+        $data->project = json_encode([]);
         $data->phone = $request['phone'];
         $data->password = bcrypt('12345678');
         $data->save();
 
         Toastr::success('Pekerja berhasil ditambahkan!');
+
+        return redirect()->route('admin.userCustomer');
+    }
+
+    public function update(Request $request)
+    {
+        // dd($request);
+        $project = Customer::where('id', $request['id'])->first();
+        $project->name = $request['name'];
+        $project->phone = $request['phone'];
+        $project->save();
+        Toastr::success('Pekerja berhasil diubah!');
 
         return redirect()->route('admin.userCustomer');
     }
