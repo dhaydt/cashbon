@@ -22,6 +22,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*Auth::routes();*/
+Route::get('authentication-failed', function () {
+    $errors = [];
+    array_push($errors, ['code' => 'auth-001', 'message' => 'Unauthorized.']);
+
+    return response()->json([
+        'errors' => $errors,
+    ], 401);
+})->name('authentication-failed');
+
 Route::get('/', function () {
     return redirect()->route('admin.dashboard');
 })->name('home');

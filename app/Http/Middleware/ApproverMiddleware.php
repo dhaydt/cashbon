@@ -20,6 +20,6 @@ class ApproverMiddleware
             return $next($request);
         }
 
-        return response()->json('Not Authorized', 401);
+        return response()->json('Not Authorized Approver', 401);
     }
 }

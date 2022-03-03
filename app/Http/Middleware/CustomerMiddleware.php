@@ -21,6 +21,6 @@ class CustomerMiddleware
             return $next($request);
         }
 
-        return response()->json('Not Authorized', 401);
+        return response()->json('Not Authorized Customer', 401);
     }
 }
