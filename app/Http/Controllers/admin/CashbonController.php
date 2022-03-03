@@ -23,9 +23,7 @@ class CashbonController extends Controller
             $key = explode(' ', $request['search']);
             $admin = Cashbon::where(function ($q) use ($key) {
                 foreach ($key as $value) {
-                    $q->orWhere('name', 'like', "%{$value}%")
-                            ->orWhere('phone', 'like', "%{$value}%")
-                            ->orWhere('project', 'like', "%{$value}%");
+                    $q->orWhere('admin_status', 'like', "%{$value}%");
                 }
             });
             $query_param = ['search' => $request['search']];

@@ -27,7 +27,5 @@ Route::middleware(['auth:sanctum', 'customer'])->group(function () {
 });
 
 Route::middleware(['auth:sanctum', 'approver'])->group(function () {
-    Route::get('/tester', function () {
-        return 'work';
-    });
+    Route::post('kasbon/update', [ApproverController::class, 'updateStatus']);
 });
