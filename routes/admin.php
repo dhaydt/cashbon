@@ -50,6 +50,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('cashbon')->name('cashbon.')->group(function () {
             Route::get('/list', [CashbonController::class, 'index'])->name('list');
             Route::get('/view', [CashbonController::class, 'show'])->name('view');
+            Route::post('/approver/add', [CashbonController::class, 'addApprover'])->name('approver');
             Route::get('/delete', [CashbonController::class, 'destroy'])->name('delete');
             Route::post('/status', [CashbonController::class, 'status'])->name('status');
             Route::post('/edit', [CashbonController::class, 'edit'])->name('edit');

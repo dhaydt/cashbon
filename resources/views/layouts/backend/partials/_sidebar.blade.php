@@ -107,21 +107,21 @@
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.cashbon.list') }}">
-                        <i class="ni ni-circle-08 text-blue"></i> {{ __('Kasbon masuk') }}
+                        <i class="fas fa-sign-in text-blue"></i> {{ __('Kasbon masuk') }}
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('admin.approver.list') }}">
-                        <i class="fas fa-users text-orange"></i> {{ __('Kasbon diterima') }}
+                        <i class="far fa-check-circle text-success"></i> {{ __('Kasbon diterima') }}
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('admin.approver.list') }}">
-                        <i class="fas fa-users text-orange"></i> {{ __('Kasbon pending') }}
+                        <i class="fas fa-spinner text-blue"></i> {{ __('Kasbon diproses') }}
                     </a>
                 </li><li class="nav-item ">
                     <a class="nav-link" href="{{ route('admin.approver.list') }}">
-                        <i class="fas fa-users text-orange"></i> {{ __('Kasbon ditolak') }}
+                        <i class="fas fa-times text-danger"></i> {{ __('Kasbon ditolak') }}
                     </a>
                 </li>
             </ul>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\CPU\Helpers;
 use App\Http\Controllers\Controller;
 use App\Models\Cashbon;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class CashbonController extends Controller
@@ -38,6 +39,27 @@ class CashbonController extends Controller
         // $app = Approver::get();
 
         return view('admin-views.cashbon.list', compact('admin', 'search'));
+    }
+
+    public function addApprover(Request $request)
+    {
+        $status = [];
+        foreach ($request['approver'] as $ap) {
+            $a = [
+                'id' => $ap,
+                'status' => 'menunggu',
+                'accepted' => 0,
+            ];
+            array_push($status, $a);
+        }
+        $data = Cashbon::find($request['cashbon_id']);
+        $data->approver = json_encode($request['approver']);
+        $data->approver_status = json_encode($status);
+        $data->admin_status = 'diproses';
+        $data->save();
+        Toastr::success('Approver berhasil ditambahkan');
+
+        return redirect()->back();
     }
 
     /**
