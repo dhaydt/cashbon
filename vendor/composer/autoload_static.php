@@ -655,6 +655,7 @@ class ComposerStaticInit1d3e31d4e6f69a15f7a211caea0a4aca
         'App\\Models\\BusinessSetting' => __DIR__ . '/../..' . '/app/Models/BusinessSetting.php',
         'App\\Models\\Cart' => __DIR__ . '/../..' . '/app/Models/Cart.php',
         'App\\Models\\CartShipping' => __DIR__ . '/../..' . '/app/Models/CartShipping.php',
+        'App\\Models\\Cashbon' => __DIR__ . '/../..' . '/app/Models/Cashbon.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Coupon' => __DIR__ . '/../..' . '/app/Models/Coupon.php',
         'App\\Models\\Customer' => __DIR__ . '/../..' . '/app/Models/Customer.php',

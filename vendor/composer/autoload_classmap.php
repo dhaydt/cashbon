@@ -79,6 +79,7 @@ return array(
     'App\\Models\\BusinessSetting' => $baseDir . '/app/Models/BusinessSetting.php',
     'App\\Models\\Cart' => $baseDir . '/app/Models/Cart.php',
     'App\\Models\\CartShipping' => $baseDir . '/app/Models/CartShipping.php',
+    'App\\Models\\Cashbon' => $baseDir . '/app/Models/Cashbon.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Coupon' => $baseDir . '/app/Models/Coupon.php',
     'App\\Models\\Customer' => $baseDir . '/app/Models/Customer.php',

@@ -22,6 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login/pekerja', [CustomerController::class, 'login']);
 Route::post('/login/approver', [ApproverController::class, 'login']);
 
+Route::middleware(['auth:sanctum', 'customer'])->group(function () {
+    Route::post('kasbon/pekerja', [CustomerController::class, 'pengajuan']);
+});
+
 Route::middleware(['auth:sanctum', 'approver'])->group(function () {
     Route::get('/tester', function () {
         return 'work';

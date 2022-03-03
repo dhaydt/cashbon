@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\auth\AdminController;
 use App\Http\Controllers\admin\auth\LoginAdminController;
 use App\Http\Controllers\admin\BannerController;
 use App\Http\Controllers\admin\BussinessSettingsController;
+use App\Http\Controllers\admin\CashbonController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\admin\DashboardController;
@@ -43,6 +44,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/status', [ProjectController::class, 'status'])->name('status');
             Route::post('/edit', [ProjectController::class, 'edit'])->name('edit');
             Route::get('/delete', [ProjectController::class, 'destroy'])->name('delete');
+        });
+
+        // Cashbon route
+        Route::prefix('cashbon')->name('cashbon.')->group(function () {
+            Route::get('/list', [CashbonController::class, 'index'])->name('list');
+            Route::get('/view', [CashbonController::class, 'show'])->name('view');
+            Route::get('/delete', [CashbonController::class, 'destroy'])->name('delete');
+            Route::post('/status', [CashbonController::class, 'status'])->name('status');
+            Route::post('/edit', [CashbonController::class, 'edit'])->name('edit');
+            Route::post('/update', [CashbonController::class, 'update'])->name('update');
         });
 
         // Approver route

@@ -3,6 +3,7 @@
 namespace App\CPU;
 
 use App\Models\Admin;
+use App\Models\Approver;
 use App\Models\BusinessSetting;
 use App\Models\Coupon;
 use App\Models\Customer;
@@ -21,6 +22,13 @@ class Helpers
         } else {
             return 25;
         }
+    }
+
+    public static function getApprover($id)
+    {
+        $approver = Approver::where('id', $id)->first();
+
+        return $approver;
     }
 
     public static function default_lang()
