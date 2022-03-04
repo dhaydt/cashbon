@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cashbon;
 use App\Models\Project;
 use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CashbonController extends Controller
@@ -112,12 +113,16 @@ class CashbonController extends Controller
         $cash = Cashbon::find($request['cashbon_id']);
         $cash->admin_status = $request['status'];
         $cash->dipinjamkan = $request['nilai'];
+        $cash->diterima_pada = Carbon::now();
         $cash->save();
 
         // Total Cashbon
         $total = Cashbon::where('project_id', $cash->project_id)->pluck('dipinjamkan')->toArray();
+        $sum = array_sum($total);
         $project = Project::find($cash->project_id);
-        $project->total_cashbon = array_sum($total);
+        $sisa = $project->nilai_project - $sum;
+        $project->total_cashbon = $sum;
+        $project->sisa = $sisa;
         $project->save();
 
         Toastr::success('Approver berhasil '.$request['status']);

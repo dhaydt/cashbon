@@ -49,7 +49,7 @@
                                             <input type="text" class="form-control" id="nomor" name="nomor">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="desc" class="form-label w-100">Pekerja</label>
+                                            <label for="desc" class="form-label w-100">Supplier</label>
                                             <select class="js-example-basic-multiple form-control w-100" name="pekerja[]" multiple="multiple">
                                                 @foreach ($worker as $w)
                                                 <option value="{{ $w['id'] }}">{{ $w['name'] }}</option>

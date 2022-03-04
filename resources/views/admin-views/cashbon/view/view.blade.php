@@ -64,12 +64,23 @@ projects or assigned tasks'),
                             <span class="field-title">Nama pemohon :</span>
                             <h4 class="field-content capitalize ml-3">{{ $user->pekerja->name }}</h4>
                         </div>
-
                         <div class="field-group mb-3">
                             <span class="field-title">Pengajuan Kasbon :</span><br>
                             <h4 class="field-content badge badge-info capitalize ml-3 mt-2">@currency($user->pengajuan)
                             </h4>
                         </div>
+                        @if ($user->admin_status == 'diterima')
+                        <div class="field-group mb-3">
+                            <span class="field-title">Diterima Admin :</span><br>
+                            <h4 class="field-content badge badge-success capitalize ml-3 mt-2">@currency($user->dipinjamkan)
+                            </h4>
+                        </div>
+                        <div class="field-group mb-3">
+                            <span class="field-title">Tanggal diterima :</span><br>
+                            <h4 class="field-content badge badge-success capitalize ml-3 mt-2">{{ date_format(date_create($user->diterima_pada), "d - M - Y") }}
+                            </h4>
+                        </div>
+                        @endif
                         <div class="field-group mb-3">
                             <span class="field-title">Dalam project :</span>
                             <h4 class="field-content capitalize ml-3">{{ $user->project->name }}</h4>

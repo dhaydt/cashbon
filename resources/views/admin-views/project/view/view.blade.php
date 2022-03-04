@@ -46,18 +46,23 @@ projects or assigned tasks'),
                                 <label class="form-control-label" for="input-name">{{ __('Nilai_proyek') }}</label>
                                 <input type="text" readonly name="name" id="input-name"
                                     class="form-control form-control-alternative"
-                                    value="{{ old('name', $data->nilai_project) }}">
+                                    value="@currency($data->nilai_project)">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="input-name">{{ __('Total_kasbon') }}</label>
                                 <input type="text" readonly class="form-control form-control-alternative"
-                                    value="{{ old('name', $data->total_cashbon) }}">
+                                    value="@currency($data->total_cashbon)">
                             </div>
                             <div class="form-group">
-                                <label class="form-control-label" for="input-name">{{ __('Pekerja') }}</label>
+                                <label class="form-control-label" for="input-name">{{ __('Sisa') }}</label>
+                                <input type="text" readonly class="form-control form-control-alternative"
+                                    value="@currency($data->sisa)">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-name">{{ __('Supplier') }}</label>
                                 <div class="row row-json">
                                     <div class="col-6">
-                                        <label for="form-control-label">Nama Pekerja</label>
+                                        <label for="form-control-label">Nama Supplier</label>
                                     </div>
                                     <div class="col-md-5 col-6">
                                         <label for="form-control-label">No. Handphone</label>

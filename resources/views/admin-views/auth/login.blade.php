@@ -59,7 +59,7 @@
                                 </div>
                                 <input id="signupSrPassword"
                                     class="pl-2 js-toggle-password form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                    name="password" placeholder="{{ __('Password') }}" type="password" value="secret" required
+                                    name="password" placeholder="{{ __('Password') }}" type="password" required
                                     data-hs-toggle-password-options='{
                                     "target": "#changePassTarget",
                                     "defaultClass": "fa-eye-slash",

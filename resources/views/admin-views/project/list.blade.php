@@ -40,10 +40,11 @@
                             <tr class="text-center">
                                 <th scope="col" class="sort" data-sort="name">No</th>
                                 <th scope="col" class="sort" data-sort="budget">Nama Project</th>
-                                <th scope="col" class="sort" data-sort="status">Pekerja</th>
+                                <th scope="col" class="sort" data-sort="status">Supplier</th>
                                 <th scope="col" class="sort" data-sort="status">Approver</th>
                                 <th scope="col" class="sort" data-sort="status">Nilai Project</th>
                                 <th scope="col" class="sort" data-sort="status">Total Cashbon</th>
+                                <th scope="col" class="sort" data-sort="status">Sisa</th>
                                 <th scope="col" class="sort" data-sort="completion">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
@@ -87,6 +88,12 @@
                                     <span class="badge badge-dot mr-4">
                                         {{-- <i class="bg-warning"></i> --}}
                                         <span class="status badge badge-info">@currency($ad['total_cashbon'])</span>
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge badge-dot mr-4">
+                                        {{-- <i class="bg-warning"></i> --}}
+                                        <span class="status badge badge-warning">@currency($ad['sisa'])</span>
                                     </span>
                                 </td>
                                 <td>
@@ -145,7 +152,7 @@
                                                         value="{{ $ad['nomor'] }}" name="nomor">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="desc" class="form-label w-100">Pekerja</label>
+                                                    <label for="desc" class="form-label w-100">Supplier</label>
                                                     @php ($pek = json_decode($ad['pekerja']))
                                                     <select class="js-example-basic-multiple form-control w-100"
                                                         name="pekerja[]" multiple="multiple">
