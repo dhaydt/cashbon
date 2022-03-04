@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\CPU\Helpers;
 use App\Http\Controllers\Controller;
 use App\Models\Cashbon;
+use App\Models\Project;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
@@ -104,12 +105,21 @@ class CashbonController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param int $id
-     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $cash = Cashbon::find($request['cashbon_id']);
+        $cash->admin_status = $request['status'];
+        $cash->dipinjamkan = $request['nilai'];
+        // $cash->save();
+        $project = Project::find($cash->project_id);
+        $sum = (int) $project->total_cashbon - (int) $cash->dipinjamkan + (int) $request['nilai'];
+        dd($sum);
+        // $total =
+        Toastr::success('Approver berhasil '.$request['status']);
+
+        return redirect()->back();
     }
 
     /**

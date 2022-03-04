@@ -131,12 +131,60 @@ projects or assigned tasks'),
                                 }}</h4>
                             <div class="row">
                                 <div class="col ml-3">
-                                    <span class="status-approver ml-2">Status :</span> <span class="value-status capitalize @if ($p->status == 'menunggu') badge badge-secondary
+                                    <span class="status-approver ml-2">Status :</span>
+                                    <span id="status{{ $p->id }}" class="value-status capitalize @if ($p->status == 'menunggu') badge badge-secondary
                                     @endif @if ($p->status == 'diterima') badge badge-success @endif @if ($p->status == 'ditolak')
                                     badge badge-danger @endif">{{ $p->status }}</span>
                                 </div>
-                                <div class="col ml-3">
-                                    <span class="stattus-approver ml-2">Diterima :</span> <span class="value-status">@currency($p->accepted)</span>
+                                <div class="col">
+                                    <span class="stattus-approver ml-2">Diterima :</span>
+                                    <span id="value{{ $p->id }}" class="value-status">@currency($p->accepted)</span>
+                                </div>
+                                <div class="col text-end">
+                                    @if ($p->status != 'menunggu')
+                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop{{ $p->id }}">Proses</button>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="modal fade" id="staticBackdrop{{ $p->id }}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Proses kasbon</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ route('admin.cashbon.adminUpdate') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="cashbon_id" value="{{ $user->id }}">
+                                            <div class="modal-body">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">Status</span>
+                                                    <select name="status" class="form-control pl-2" id="basic-addon1">
+                                                        <option value="diterima" {{ $p->status == 'diterima' ?
+                                                            'selected' : '' }}>Terima</option>
+                                                        <option value="ditolak" {{ $p->status == 'ditolak' ? 'selected'
+                                                            : '' }}>Tolak</option>
+                                                    </select>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon2">Nilai</span>
+                                                    <input type="text" class="form-control pl-2" name="nilai"
+                                                        value="{{ $p->accepted }}" aria-label="nilai"
+                                                        aria-describedby="basic-addon2">
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Proses</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                             @endforeach

@@ -27,3 +27,9 @@
     border-radius: 20px;
     padding: 10px;
 }
+
+.input-group-text {
+    background-color: #e8e8e8;
+    color: #828282;
+    min-width: 80px;
+}

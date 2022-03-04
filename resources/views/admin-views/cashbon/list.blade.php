@@ -42,7 +42,7 @@
                                 <th scope="col" class="sort" data-sort="budget">Nama</th>
                                 <th scope="col" class="sort" data-sort="budget">Project</th>
                                 <th scope="col" class="sort" data-sort="status">Pengajuan (Rp.)</th>
-                                <th scope="col" class="sort" data-sort="status">Keperluan</th>
+                                <th scope="col" class="sort" data-sort="status">Diteriima</th>
                                 <th scope="col" class="sort" data-sort="status">Approver</th>
                                 <th scope="col" class="sort" data-sort="completion">Aksi</th>
                                 <th scope="col"></th>
@@ -73,12 +73,12 @@
                                 </td>
                                 <td class="text-center">
                                     <span class="badge badge-dot mr-4">
-                                        <span class="status badge badge-success">@currency($ad->pengajuan)</span>
+                                        <span class="status badge badge-warning">@currency($ad->pengajuan)</span>
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="status capitalize">
-                                        {{ $ad->keperluan }}
+                                    <span class="status capitalize badge badge-success">
+                                        @currency($ad->dipinjamkan)
                                     </span>
                                 </td>
                                 <td class="text-center">

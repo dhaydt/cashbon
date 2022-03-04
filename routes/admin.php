@@ -54,7 +54,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/delete', [CashbonController::class, 'destroy'])->name('delete');
             Route::post('/status', [CashbonController::class, 'status'])->name('status');
             Route::post('/edit', [CashbonController::class, 'edit'])->name('edit');
-            Route::post('/update', [CashbonController::class, 'update'])->name('update');
+            Route::post('/adminUpdate', [CashbonController::class, 'update'])->name('adminUpdate');
         });
 
         // Approver route

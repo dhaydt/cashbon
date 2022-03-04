@@ -73,7 +73,7 @@
                                 <td class="text-center">
                                     <span class="badge badge-dot mr-4">
                                         @foreach (json_decode($ad['approver']) as $a)
-                                        <span class="status capitalize badge badge-warning">{{ $a->name }}</span>
+                                        <span class="status capitalize badge badge-secondary">{{ $a->name }}</span>
                                         @endforeach
                                     </span>
                                 </td>
@@ -86,7 +86,7 @@
                                 <td class="text-center">
                                     <span class="badge badge-dot mr-4">
                                         {{-- <i class="bg-warning"></i> --}}
-                                        <span class="status">{{ $ad['phone'] }}</span>
+                                        <span class="status badge badge-info">@currency($ad['total_cashbon'])</span>
                                     </span>
                                 </td>
                                 <td>

@@ -17,7 +17,7 @@ class Authenticate extends Middleware
     {
         // dd($request);
         if (!$request->expectsJson()) {
-            return route('authentication-failed');
+            return route('admin.auth.adminLogin');
         }
     }
 }
