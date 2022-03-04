@@ -80,7 +80,7 @@ class CustomerController extends Controller
                 'pekerjaan' => $c->keperluan,
                 'tgl_diajukan' => $c->diajukan_pada,
                 'status' => $c->admin_status,
-                'jumlah_disetujui' => $c->dipinjamkan,
+                'jumlah_kasbon_disetujui' => $c->dipinjamkan,
                 'tgl_disetujui' => $c->diterima_pada,
                 // 'no_nota' => $c->no_nota,
             ];

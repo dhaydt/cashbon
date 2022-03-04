@@ -27,19 +27,22 @@ class ApproverController extends Controller
 
         $data = $driver->where('phone', $cred['phone'])->get(['id', 'name', 'phone']);
 
-        $persetujuan = Cashbon::with('pekerja', 'project')->whereJsonContains('approver_status', ['id' => (string) $id])->get();
+        $persetujuan = Cashbon::with('pekerja', 'project')->whereJsonContains('approver_status', ['id' => $id])->get();
 
         $cashbon = [];
         foreach ($persetujuan as $p) {
             $peng = [
                 'cashbon_id' => $p->id,
-                'pekerja_id' => $p->pekerja_id,
-                'name' => $p->pekerja->name,
-                'project_id' => $p->project_id,
-                'project_name' => $p->project->name,
-                'pengajuan' => $p->pengajuan,
-                'keperluan' => $p->keperluan,
-                'diajukan_pada' => $p->diajukan_pada,
+                'tgl_pengajuan' => $p->diajukan_pada,
+                'nama_pemohon' => $p->pekerja->name,
+                'nama_project' => $p->project->name,
+                'pekerjaan' => $p->keperluan,
+                'nilai_kontrak' => $p->project->nilai_project,
+                'total_kasbon' => $p->project->total_cashbon,
+                'sisa_kasbon' => $p->project->sisa,
+                'pengajuan_kasbon' => $p->pengajuan,
+                'status' => $p->admin_status,
+                'jumlah_kasbon_disetujui' => $p->dipinjamkan,
             ];
             array_push($cashbon, $peng);
         }
