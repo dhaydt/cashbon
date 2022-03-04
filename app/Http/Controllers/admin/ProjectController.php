@@ -107,6 +107,7 @@ class ProjectController extends Controller
         $data->nilai_project = $request['nilai'];
         $data->jenis = $request['jenis'];
         $data->nomor = $request['nomor'];
+        $data->sisa = $request['nilai'];
         $data->pekerja = json_encode($worker);
         $data->approver = json_encode($app);
         $data->save();
