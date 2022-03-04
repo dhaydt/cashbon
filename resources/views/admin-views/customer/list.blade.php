@@ -107,7 +107,7 @@
                                         <input type="hidden" name="id" value="{{ $ad['id'] }}">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="modalEdit{{ $ad['id'] }}Label">Ubah pekerja {{ $ad['name'] }}</h5>
+                                            <h5 class="modal-title" id="modalEdit{{ $ad['id'] }}Label">Ubah Supplier {{ $ad['name'] }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>

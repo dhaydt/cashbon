@@ -8,15 +8,15 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark mb-0">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="javascript:">Manajemen pekerja</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Pekerja</li>
+                            <li class="breadcrumb-item"><a href="javascript:">Manajemen Supplier</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Supplier</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 d-flex justify-content-end">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop">
-                        Tambahkan pekerja
+                        Tambahkan Supplier
                     </button>
                     <!-- Modal -->
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -26,7 +26,7 @@
                                 @csrf
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Data pekerja</h5>
+                                        <h5 class="modal-title" id="staticBackdropLabel">Data Supplier</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
