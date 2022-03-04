@@ -202,7 +202,7 @@ projects or assigned tasks'),
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon2">Nilai</span>
                                                     <input type="text" class="form-control pl-2" name="nilai"
-                                                        value="{{ $user->dipinjamkan ? $user->dipinjamkan : $p->nilai }}" aria-label="nilai"
+                                                        value="{{ $user->dipinjamkan ? $user->dipinjamkan : $p->accepted }}" aria-label="nilai"
                                                         aria-describedby="basic-addon2">
                                                 </div>
 
