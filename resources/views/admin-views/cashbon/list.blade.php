@@ -104,7 +104,7 @@
                                             data-bs-target="#modalEdit{{ $ad['id'] }}">
                                             <i class="fas fa-edit text-info"></i>
                                         </a> --}}
-                                        <a href="{{ route('admin.customer.delete', ['id' => $ad['id']]) }}"
+                                        <a href="{{ route('admin.cashbon.delete', ['id' => $ad['id']]) }}"
                                             class="viewUser">
                                             <i class="fas fa-trash text-danger"></i>
                                         </a>

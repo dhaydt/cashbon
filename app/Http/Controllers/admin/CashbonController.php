@@ -135,11 +135,19 @@ class CashbonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $data = Cashbon::where('id', $request['id'])->first();
+        if ($data == null) {
+            Toastr::info('Kasbon berhasil dihapus!');
+
+            return redirect()->back();
+        }
+        $data->delete();
+        Toastr::info('Kasbon berhasil dihapus!');
+
+        return redirect()->back();
     }
 }
