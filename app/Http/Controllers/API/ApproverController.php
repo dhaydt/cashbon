@@ -12,23 +12,20 @@ use Illuminate\Support\Facades\Hash;
 
 class ApproverController extends Controller
 {
-    public function login(Request $request)
+    public function login($cred)
     {
-        $request->validate([
-            'phone' => 'required',
-            'password' => 'required',
-        ]);
+        // dd('approver', $cred);
 
-        $driver = Approver::where('phone', $request->phone)->first();
+        $driver = Approver::where('phone', $cred['phone'])->first();
 
-        if (!$driver || !Hash::check($request->password, $driver->password)) {
+        if (!$driver || !Hash::check($cred['password'], $driver->password)) {
             return response()->json(['errors' => 'No Handphone atau Password salah'], 403);
         }
 
         $id = $driver->id;
         $project = Project::whereJsonContains('approver', ['id' => (string) $id])->get(['id', 'name']);
 
-        $data = $driver->where('phone', $request->phone)->get(['id', 'name', 'phone']);
+        $data = $driver->where('phone', $cred['phone'])->get(['id', 'name', 'phone']);
 
         $persetujuan = Cashbon::with('pekerja', 'project')->whereJsonContains('approver_status', ['id' => (string) $id])->get();
 

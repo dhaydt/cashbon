@@ -14,30 +14,27 @@ use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
-    public function login(Request $request)
+    public function login($cred)
     {
-        // dd($request);
-        $request->validate([
-            'phone' => 'required',
-            'password' => 'required',
-        ]);
+        // dd('worker', $cred);
 
-        $customer = Customer::where('phone', $request->phone)->first();
+        $customer = Customer::where('phone', $cred['phone'])->first();
+
         if (!$customer) {
             return response()->json(['errors' => 'No Handphone tidak terdaftar'], 403);
         }
 
-        if (!Hash::check($request->password, $customer->password)) {
+        if (!Hash::check($cred['password'], $customer->password)) {
             return response()->json(['errors' => 'Password salah'], 403);
         }
 
         $id = $customer->id;
         $pekerja = Project::whereJsonContains('pekerja', ['id' => (string) $id])->get(['id', 'name']);
 
-        $data = $customer->where('phone', $request->phone)->get(['id', 'name', 'phone', 'cashbon']);
+        $data = $customer->where('phone', $cred['phone'])->get(['id', 'name', 'phone', 'cashbon']);
 
         return response()->json([
-            'role' => 'pekerja',
+            'role' => 'worker',
             'user_data' => $data,
             'project' => $pekerja,
             'token' => $customer->createToken('mobile', ['role:customer'])->plainTextToken,
@@ -70,5 +67,11 @@ class CustomerController extends Controller
             'status' => 'success',
             'message' => 'Pengajuan berhasil, mohon tunggu informasi selanjutnya',
         ]);
+    }
+
+    public function status(Request $request)
+    {
+        $casbon = Cashbon::with('pekerja', 'project')->where('pekerja_id', $request['id'])->get();
+        dd($casbon);
     }
 }
