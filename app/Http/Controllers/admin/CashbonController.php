@@ -112,11 +112,14 @@ class CashbonController extends Controller
         $cash = Cashbon::find($request['cashbon_id']);
         $cash->admin_status = $request['status'];
         $cash->dipinjamkan = $request['nilai'];
-        // $cash->save();
+        $cash->save();
+
+        // Total Cashbon
+        $total = Cashbon::where('project_id', $cash->project_id)->pluck('dipinjamkan')->toArray();
         $project = Project::find($cash->project_id);
-        $sum = (int) $project->total_cashbon - (int) $cash->dipinjamkan + (int) $request['nilai'];
-        dd($sum);
-        // $total =
+        $project->total_cashbon = array_sum($total);
+        $project->save();
+
         Toastr::success('Approver berhasil '.$request['status']);
 
         return redirect()->back();
