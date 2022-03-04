@@ -77,7 +77,17 @@ projects or assigned tasks'),
                         </div>
                         <div class="field-group mb-3">
                             <span class="field-title">Tanggal diterima :</span><br>
-                            <h4 class="field-content badge badge-success capitalize ml-3 mt-2">{{ date_format(date_create($user->diterima_pada), "d - M - Y") }}
+                            <h4 class="field-content badge badge-warning capitalize ml-3 mt-2">{{ date_format(date_create($user->diterima_pada), "d - M - Y") }}
+                            </h4>
+                        </div>
+                        <div class="field-group mb-3">
+                            <span class="field-title">Tipe</span><br>
+                            <h4 class="field-content capitalize ml-3 mt-2">{{ $user->type }}
+                            </h4>
+                        </div>
+                        <div class="field-group mb-3">
+                            <span class="field-title">Nomor Nota</span><br>
+                            <h4 class="field-content capitalize ml-3 mt-2">{{ $user->no_nota }}
                             </h4>
                         </div>
                         @endif
@@ -173,6 +183,14 @@ projects or assigned tasks'),
                                             <input type="hidden" name="cashbon_id" value="{{ $user->id }}">
                                             <div class="modal-body">
                                                 <div class="input-group mb-3">
+                                                    <span class="input-group-text">Tipe</span>
+                                                    <input type="text" class="form-control pl-2" name="type" value="{{ $user->type }}">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text">No. Nota</span>
+                                                    <input type="text" class="form-control pl-2" name="nota" value="{{ $user->no_nota }}">
+                                                </div>
+                                                <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1">Status</span>
                                                     <select name="status" class="form-control pl-2" id="basic-addon1">
                                                         <option value="diterima" {{ $p->status == 'diterima' ?
@@ -184,7 +202,7 @@ projects or assigned tasks'),
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon2">Nilai</span>
                                                     <input type="text" class="form-control pl-2" name="nilai"
-                                                        value="{{ $p->accepted }}" aria-label="nilai"
+                                                        value="{{ $user->dipinjamkan ? $user->dipinjamkan : $p->nilai }}" aria-label="nilai"
                                                         aria-describedby="basic-addon2">
                                                 </div>
 

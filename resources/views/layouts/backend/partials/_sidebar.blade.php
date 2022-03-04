@@ -106,8 +106,13 @@
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.cashbon.list') }}">
+                        <i class="fas fa-border-all text-blue"></i> {{ __('Semua Kasbon') }}
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.cashbon.list', ['search' => 'menunggu']) }}">
-                        <i class="fas fa-sign-in text-blue"></i> {{ __('Kasbon masuk') }}
+                        <i class="fas fa-sign-in text-orange"></i> {{ __('Kasbon baru') }}
                     </a>
                 </li>
                 <li class="nav-item ">

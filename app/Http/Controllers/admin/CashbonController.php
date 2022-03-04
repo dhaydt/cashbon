@@ -113,6 +113,8 @@ class CashbonController extends Controller
         $cash = Cashbon::find($request['cashbon_id']);
         $cash->admin_status = $request['status'];
         $cash->dipinjamkan = $request['nilai'];
+        $cash->type = $request['type'];
+        $cash->no_nota = $request['nota'];
         $cash->diterima_pada = Carbon::now();
         $cash->save();
 

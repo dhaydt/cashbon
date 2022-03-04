@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\CashbonController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\ExportController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\PaymentController;
 use App\Http\Controllers\admin\ProductController;
@@ -34,6 +35,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
         Route::get('/user_admin', [UserController::class, 'index'])->name('userAdmin');
         Route::post('/add_admin', [AdminController::class, 'index'])->name('userAdminAdd');
+
+        Route::get('export', [ExportController::class, 'export'])->name('export');
 
         // Project route
         Route::prefix('project')->name('project.')->group(function () {
