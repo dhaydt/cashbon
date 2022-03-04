@@ -71,7 +71,7 @@ class CustomerController extends Controller
 
     public function status(Request $request)
     {
-        $casbon = Cashbon::with('pekerja', 'project')->where('pekerja_id', $request['id'])->get();
+        $casbon = Cashbon::with('pekerja', 'project')->where('pekerja_id', $request['suplier_id'])->get();
         $data = [];
         foreach ($casbon as $c) {
             $item = [
