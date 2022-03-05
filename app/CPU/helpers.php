@@ -349,4 +349,51 @@ class Helpers
 
         return $err_keeper;
     }
+
+    public static function send_push_notif_to_device($fcm_token, $data)
+    {
+        // dd($data);
+        $key = 'AAAAhmPgxWA:APA91bGLrQAAoOPWqt3ZUWz2H3LwTbkhTaFYYh0gq3lFhSy5sDg98SFyIXF3uz9r44Wb3bFXQTbmIGcOzHFOz4SAgyUeyfqZJROFLsP_DLb37CaPBRqytM25Y8HpDgIsTcQNDZcJj1HB';
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        $header = ['authorization: key='.$key.'',
+            'content-type: application/json',
+        ];
+
+        $postdata = '{
+            "to" : "'.$fcm_token.'",
+            "data" : {
+                "title" :"'.$data['project'].'",
+                "body" : "'.$data['pekerjaan'].'",
+                "status" : "'.$data['status'].'",
+                "nilai":"'.$data['dipinjamkan'].'",
+                "is_read": 0
+            },
+            "notification" : {
+                "title" :"'.$data['project'].'",
+                "body" : "'.$data['pekerjaan'].'",
+                "status" : "'.$data['status'].'",
+                "nilai":"'.$data['dipinjamkan'].'",
+                "is_read": 0,
+                "icon" : "new",
+                "sound" : "default"
+            }
+        }';
+
+        $ch = curl_init();
+        $timeout = 120;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        // Get URL content
+        $result = curl_exec($ch);
+        // close handle to release resources
+        curl_close($ch);
+
+        return $result;
+    }
 }

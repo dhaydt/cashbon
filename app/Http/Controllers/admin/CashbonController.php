@@ -4,7 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\CPU\Helpers;
 use App\Http\Controllers\Controller;
+use App\Models\Approver;
 use App\Models\Cashbon;
+use App\Models\Customer;
 use App\Models\Project;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
@@ -43,6 +45,7 @@ class CashbonController extends Controller
 
     public function addApprover(Request $request)
     {
+        // dd($request);
         $status = [];
         foreach ($request['approver'] as $ap) {
             $a = [
@@ -52,11 +55,23 @@ class CashbonController extends Controller
             ];
             array_push($status, $a);
         }
-        $data = Cashbon::find($request['cashbon_id']);
+        $data = Cashbon::with('pekerja', 'project')->find($request['cashbon_id']);
         $data->approver = json_encode($request['approver']);
         $data->approver_status = json_encode($status);
         $data->admin_status = 'diproses';
-        $data->save();
+        // $data->save();
+        foreach ($request['approver'] as $app) {
+            $approver = Approver::find($app);
+            $fcm_token = $approver->device_token;
+            $data = [
+                'project' => $data->project->name,
+                'pekerjaan' => $data->keperluan,
+                'status' => 'diproses',
+                'dipinjamkan' => $data->pengajuan,
+            ];
+            Helpers::send_push_notif_to_device($fcm_token, $data);
+        }
+
         Toastr::success('Approver berhasil ditambahkan');
 
         return redirect()->back();
@@ -117,6 +132,7 @@ class CashbonController extends Controller
         $cash->no_nota = $request['nota'];
         $cash->diterima_pada = Carbon::now();
         $cash->save();
+        // dd($cash);
 
         // Total Cashbon
         $total = Cashbon::where('project_id', $cash->project_id)->pluck('dipinjamkan')->toArray();
@@ -126,6 +142,17 @@ class CashbonController extends Controller
         $project->total_cashbon = $sum;
         $project->sisa = $sisa;
         $project->save();
+        $data = [
+            'project' => $project->name,
+            'pekerjaan' => $cash->keperluan,
+            'status' => $cash->admin_status,
+            'dipinjamkan' => $cash->dipinjamkan,
+        ];
+
+        $worker = Customer::where('id', $cash->pekerja_id)->first();
+        $fcm_token = $worker->device_token;
+        // dd($fcm_token);
+        Helpers::send_push_notif_to_device($fcm_token, $data);
 
         Toastr::success('Approver berhasil '.$request['status']);
 
