@@ -33,7 +33,13 @@
 
     <style>
         .main-content .header.bg-primary {
-            background-color: {{$web_config['primary_color']}} !important;
+            background-color: {
+                    {
+                    $web_config['primary_color']
+                }
+            }
+
+             !important;
         }
 
         .breadcrumb-item {
@@ -54,6 +60,7 @@
             height: 20px;
             cursor: pointer;
         }
+
         .avatar-group .avatar {
             z-index: 0;
         }
@@ -75,6 +82,7 @@
         .widget-cart-item {
             position: relative;
         }
+
         .widget-product-title {
             font-family: 'Roboto', sans-serif;
             position: relative;
@@ -82,28 +90,39 @@
             font-size: .875rem;
             font-weight: 500;
         }
-        .widget-product-title a{
+
+        .widget-product-title a {
             color: black !important;
             text-decoration: none;
             text-transform: capitalize;
             background-color: transparent;
         }
+
         .widget-product-meta {
             font-size: .875rem;
         }
+
         .text-accent {
             font-family: 'Roboto', sans-serif;
             font-weight: 700;
             font-size: 18px;
             color: #000;
         }
+
         hr {
             margin: 0;
             border: 0;
             border-top: 1px solid #e3e9ef;
         }
+
         .navbar-tool-icon-box {
-            color: {{$web_config['primary_color']}};
+            color: {
+                    {
+                    $web_config['primary_color']
+                }
+            }
+
+            ;
         }
 
         .navbar-tool-text {
@@ -118,14 +137,22 @@
             width: 1.25rem;
             height: 1.25rem;
             border-radius: 50%;
-            background-color: {{$web_config['secondary_color']}}!important;
+
+            background-color: {
+                    {
+                    $web_config['secondary_color']
+                }
+            }
+
+             !important;
             color: #fff;
             font-size: .75rem;
             font-weight: 500;
             text-align: center;
             line-height: 1.25rem;
         }
-        .navbar-tool-text > small {
+
+        .navbar-tool-text>small {
             color: #4b566b !important;
         }
     </style>

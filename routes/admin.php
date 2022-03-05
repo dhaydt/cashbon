@@ -37,7 +37,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/add_admin', [AdminController::class, 'index'])->name('userAdminAdd');
 
         Route::get('export', [ExportController::class, 'export'])->name('export');
-
         // Project route
         Route::prefix('project')->name('project.')->group(function () {
             Route::get('/list', [ProjectController::class, 'index'])->name('list');

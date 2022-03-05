@@ -46,7 +46,6 @@ class ApproverController extends Controller
             ];
             array_push($cashbon, $peng);
         }
-        // dd($cashbon);
 
         return response()->json([
             'role' => 'approver',

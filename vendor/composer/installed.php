@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '63bcc7ddd11fd4955b6b6ec8f43309fda6a1b95f',
+        'reference' => 'fd12ae8c4837d97250790bda21e230b78e6422c0',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -424,6 +424,15 @@
             'reference' => '744ebba495319501b873a4e48787759c72e3fb8c',
             'dev_requirement' => false,
         ),
+        'kawankoding/laravel-fcm' => array(
+            'pretty_version' => '0.2.5',
+            'version' => '0.2.5.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../kawankoding/laravel-fcm',
+            'aliases' => array(),
+            'reference' => 'f0f9fe1478de6a6b9146231b47341c68f1ac98e7',
+            'dev_requirement' => false,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -454,7 +463,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '63bcc7ddd11fd4955b6b6ec8f43309fda6a1b95f',
+            'reference' => 'fd12ae8c4837d97250790bda21e230b78e6422c0',
             'dev_requirement' => false,
         ),
         'laravel/legacy-factories' => array(

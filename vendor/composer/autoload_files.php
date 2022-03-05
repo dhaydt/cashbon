@@ -39,6 +39,7 @@ return array(
     '4a1f389d6ce373bda9e57857d3b61c84' => $vendorDir . '/barryvdh/laravel-debugbar/src/helpers.php',
     'caf23243e9cb3afd48d0414815ebf07e' => $vendorDir . '/brian2694/laravel-toastr/src/helper.php',
     'ed962a97bd972bc82007176b647d4e36' => $vendorDir . '/facade/ignition/src/helpers.php',
+    'e82eb7f657451ddca8d351a3ae8f2eb8' => $vendorDir . '/kawankoding/laravel-fcm/src/helpers.php',
     '37efcf4b38f2e77789b09da04b892bff' => $baseDir . '/app/CPU/helpers.php',
     '5db82252215435aaa9946688db025aa8' => $baseDir . '/app/CPU/image-manager.php',
     '206031e75bc11d78571d648338324113' => $baseDir . '/app/CPU/product-manager.php',

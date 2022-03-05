@@ -40,6 +40,7 @@ class ComposerStaticInit1d3e31d4e6f69a15f7a211caea0a4aca
         '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
         'caf23243e9cb3afd48d0414815ebf07e' => __DIR__ . '/..' . '/brian2694/laravel-toastr/src/helper.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
+        'e82eb7f657451ddca8d351a3ae8f2eb8' => __DIR__ . '/..' . '/kawankoding/laravel-fcm/src/helpers.php',
         '37efcf4b38f2e77789b09da04b892bff' => __DIR__ . '/../..' . '/app/CPU/helpers.php',
         '5db82252215435aaa9946688db025aa8' => __DIR__ . '/../..' . '/app/CPU/image-manager.php',
         '206031e75bc11d78571d648338324113' => __DIR__ . '/../..' . '/app/CPU/product-manager.php',
@@ -150,6 +151,10 @@ class ComposerStaticInit1d3e31d4e6f69a15f7a211caea0a4aca
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
             'LaravelFrontendPresets\\ArgonPreset\\' => 35,
+        ),
+        'K' => 
+        array (
+            'Kawankoding\\Fcm\\' => 16,
         ),
         'I' => 
         array (
@@ -470,6 +475,10 @@ class ComposerStaticInit1d3e31d4e6f69a15f7a211caea0a4aca
         array (
             0 => __DIR__ . '/..' . '/laravel-frontend-presets/argon/src',
         ),
+        'Kawankoding\\Fcm\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kawankoding/laravel-fcm/src',
+        ),
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
@@ -643,6 +652,7 @@ class ComposerStaticInit1d3e31d4e6f69a15f7a211caea0a4aca
         'App\\Exports\\cashbonExport' => __DIR__ . '/../..' . '/app/Exports/cashbonExport.php',
         'App\\Http\\Controllers\\API\\ApproverController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/ApproverController.php',
         'App\\Http\\Controllers\\API\\CustomerController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/CustomerController.php',
+        'App\\Http\\Controllers\\API\\RoleCheckController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/RoleCheckController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -655,6 +665,7 @@ class ComposerStaticInit1d3e31d4e6f69a15f7a211caea0a4aca
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\PaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/PaymentController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
+        'App\\Http\\Controllers\\SendNotifController' => __DIR__ . '/../..' . '/app/Http/Controllers/SendNotifController.php',
         'App\\Http\\Controllers\\SharedController' => __DIR__ . '/../..' . '/app/Http/Controllers/SharedController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\WebController' => __DIR__ . '/../..' . '/app/Http/Controllers/WebController.php',
@@ -3314,6 +3325,9 @@ class ComposerStaticInit1d3e31d4e6f69a15f7a211caea0a4aca
         'Intervention\\Image\\Response' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Response.php',
         'Intervention\\Image\\Size' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Size.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Kawankoding\\Fcm\\Fcm' => __DIR__ . '/..' . '/kawankoding/laravel-fcm/src/Fcm.php',
+        'Kawankoding\\Fcm\\FcmFacade' => __DIR__ . '/..' . '/kawankoding/laravel-fcm/src/FcmFacade.php',
+        'Kawankoding\\Fcm\\FcmServiceProvider' => __DIR__ . '/..' . '/kawankoding/laravel-fcm/src/FcmServiceProvider.php',
         'LaravelFrontendPresets\\ArgonPreset\\ArgonPreset' => __DIR__ . '/..' . '/laravel-frontend-presets/argon/src/ArgonPreset.php',
         'LaravelFrontendPresets\\ArgonPreset\\ArgonPresetServiceProvider' => __DIR__ . '/..' . '/laravel-frontend-presets/argon/src/ArgonPresetServiceProvider.php',
         'Laravel\\Sail\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/InstallCommand.php',

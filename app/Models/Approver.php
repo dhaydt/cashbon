@@ -10,4 +10,11 @@ class Approver extends Model
 {
     use HasFactory;
     use HasApiTokens;
+    protected $fillable = [
+        'name',
+        'phone',
+        'password',
+        'project',
+        'device_token',
+    ];
 }
