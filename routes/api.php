@@ -28,7 +28,8 @@ Route::post('/login/approver', [ApproverController::class, 'login']);
 
 Route::middleware(['auth:sanctum', 'customer'])->group(function () {
     Route::post('kasbon/pekerja', [CustomerController::class, 'pengajuan']);
-    Route::get('kasbon/status', [CustomerController::class, 'status']);
+    Route::get('kasbon/list', [CustomerController::class, 'status']);
+    Route::get('kasbon/history', [CustomerController::class, 'history']);
     Route::put('firebase_token_worker', [NotificationController::class, 'firebase_token_worker']);
 });
 

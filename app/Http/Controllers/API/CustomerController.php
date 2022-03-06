@@ -45,7 +45,7 @@ class CustomerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'pengajuan' => 'required',
-            'keperluan' => 'required',
+            'pekerjaan' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -56,7 +56,7 @@ class CustomerController extends Controller
         $order->pekerja_id = $request->user()->id;
         $order->project_id = $request->project_id;
         $order->pengajuan = $request->pengajuan;
-        $order->keperluan = $request->keperluan;
+        $order->keperluan = $request->pekerjaan;
         $order->diajukan_pada = Carbon::now();
         $order->approver = json_encode([]);
         $order->approver_status = json_encode([]);
@@ -71,7 +71,28 @@ class CustomerController extends Controller
 
     public function status(Request $request)
     {
-        $casbon = Cashbon::with('pekerja', 'project')->where('pekerja_id', $request['suplier_id'])->get();
+        $casbon = Cashbon::with('pekerja', 'project')->where('pekerja_id', $request->user()->id)->where('admin_status', '!=', 'diterima')->orderby('created_at', 'DESC')->get();
+        $data = [];
+        foreach ($casbon as $c) {
+            $item = [
+                'project' => $c->project->name,
+                'jumlah_pengajuan' => $c->pengajuan,
+                'pekerjaan' => $c->keperluan,
+                'tgl_diajukan' => $c->diajukan_pada,
+                'status' => $c->admin_status,
+                'jumlah_kasbon_disetujui' => $c->dipinjamkan,
+                'tgl_disetujui' => $c->diterima_pada,
+                // 'no_nota' => $c->no_nota,
+            ];
+            array_push($data, $item);
+        }
+
+        return response()->json($data);
+    }
+
+    public function history(Request $request)
+    {
+        $casbon = Cashbon::with('pekerja', 'project')->where('pekerja_id', $request->user()->id)->where('diterima_pada', '!=', 'NULL')->orderby('created_at', 'DESC')->get();
         $data = [];
         foreach ($casbon as $c) {
             $item = [

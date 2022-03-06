@@ -40,6 +40,7 @@
                             <tr class="text-center">
                                 <th scope="col" class="sort" data-sort="name">No</th>
                                 <th scope="col" class="sort" data-sort="budget">Nama</th>
+                                <th scope="col" class="sort" data-sort="budget">Tanggal masuk</th>
                                 <th scope="col" class="sort" data-sort="budget">Project</th>
                                 <th scope="col" class="sort" data-sort="status">Pengajuan (Rp.)</th>
                                 <th scope="col" class="sort" data-sort="status">Diteriima</th>
@@ -63,6 +64,9 @@
                                 </th>
                                 <td class="budget text-center capitalize">
                                     {{ $ad['pekerja']->name }}
+                                </td>
+                                <td class="budget text-center capitalize">
+                                    {{ date('d-M-Y',strtotime($ad->diajukan_pada)) }}
                                 </td>
                                 <td class="text-center">
                                     <span class="badge badge-dot mr-4">
