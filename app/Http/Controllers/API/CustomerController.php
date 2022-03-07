@@ -110,4 +110,19 @@ class CustomerController extends Controller
 
         return response()->json($data);
     }
+
+    public function updatePassword(Request $request)
+    {
+        $id = $request->user()->id;
+        $user = Customer::find($id);
+        $old = $request->old_password;
+
+        if (!$user || !Hash::check($old, $user['password'])) {
+            return response()->json(['errors' => 'No Handphone atau Password salah'], 403);
+        }
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        return response()->json(['success' => 'Password Supplier berhasil diganti'], 200);
+    }
 }

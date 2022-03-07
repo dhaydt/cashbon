@@ -165,12 +165,17 @@
             </ul> --}}
 
             <!-- Order Section -->
-            <h6 class="navbar-heading text-muted">Config Section</h6>
+            <h6 class="navbar-heading text-muted">Super Admin Section</h6>
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.web-config.index') }}">
-                        <i class="fas fa-cogs text-blue"></i> {{ __('Web config') }}
+                        <i class="fas fa-user-cog text-blue"></i> {{ __('Daftar Admin') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.web-config.index') }}">
+                        <i class="fas fa-cogs text-orange"></i> {{ __('Web config') }}
                     </a>
                 </li>
                 {{-- <li class="nav-item ">

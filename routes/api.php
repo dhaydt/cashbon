@@ -30,11 +30,13 @@ Route::middleware(['auth:sanctum', 'customer'])->group(function () {
     Route::post('kasbon/pekerja', [CustomerController::class, 'pengajuan']);
     Route::get('kasbon/list', [CustomerController::class, 'status']);
     Route::get('kasbon/history', [CustomerController::class, 'history']);
+    Route::post('password/supplier', [CustomerController::class, 'updatePassword']);
     Route::put('firebase_token_worker', [NotificationController::class, 'firebase_token_worker']);
 });
 
 Route::middleware(['auth:sanctum', 'approver'])->group(function () {
     Route::put('firebase_token_approver', [NotificationController::class, 'firebase_token_approver']);
     Route::post('kasbon/update', [ApproverController::class, 'updateStatus']);
+    Route::post('password/approver', [ApproverController::class, 'updatePassword']);
     Route::get('kasbon/history/approver', [ApproverController::class, 'history']);
 });
