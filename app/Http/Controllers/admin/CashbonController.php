@@ -103,8 +103,9 @@ class CashbonController extends Controller
     public function show(Request $request)
     {
         $user = Cashbon::with('pekerja', 'project')->find($request['id']);
+        $approver = Approver::get();
 
-        return view('admin-views.cashbon.view.view', compact('user'));
+        return view('admin-views.cashbon.view.view', compact('user', 'approver'));
     }
 
     /**

@@ -130,7 +130,7 @@ projects or assigned tasks'),
                                                     <label for="desc" class="form-label w-100">Approver</label>
                                                     <select class="js-example-basic-multiple2 form-control w-100"
                                                         name="approver[]" multiple="multiple">
-                                                        @foreach (json_decode($user->project->approver) as $a)
+                                                        @foreach ($approver as $a)
                                                         <option value="{{ $a->id }}">{{ $a->name }}</option>
                                                         @endforeach
                                                     </select>

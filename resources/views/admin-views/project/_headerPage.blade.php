@@ -45,7 +45,7 @@
                                             <input type="number" class="form-control" id="nilai" name="nilai">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="nomor" class="form-label">Nomor kontrak</label>
+                                            <label for="nomor" class="form-label">Nomor kontrak <small>(Opsional)</small></label>
                                             <input type="text" class="form-control" id="nomor" name="nomor">
                                         </div>
                                         <div class="mb-3">
@@ -56,14 +56,14 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="mb-3">
+                                        {{-- <div class="mb-3">
                                             <label for="desc" class="form-label w-100">Approver</label>
                                             <select class="js-example-basic-multiple2 form-control w-100" name="approver[]" multiple="multiple">
                                                 @foreach ($app as $a)
                                                 <option value="{{ $a['id'] }}">{{ $a['name'] }}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"

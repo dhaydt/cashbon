@@ -33,13 +33,7 @@
 
     <style>
         .main-content .header.bg-primary {
-            background-color: {
-                    {
-                    $web_config['primary_color']
-                }
-            }
-
-             !important;
+            background-color: {{ $web_config['primary_color'] }} !important;
         }
 
         .breadcrumb-item {
@@ -116,13 +110,7 @@
         }
 
         .navbar-tool-icon-box {
-            color: {
-                    {
-                    $web_config['primary_color']
-                }
-            }
-
-            ;
+            color: {{ $web_config['primary_color'] }};
         }
 
         .navbar-tool-text {
@@ -137,14 +125,7 @@
             width: 1.25rem;
             height: 1.25rem;
             border-radius: 50%;
-
-            background-color: {
-                    {
-                    $web_config['secondary_color']
-                }
-            }
-
-             !important;
+            background-color: {{ $web_config['secondary_color'] }} !important;
             color: #fff;
             font-size: .75rem;
             font-weight: 500;

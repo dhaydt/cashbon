@@ -165,7 +165,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="mb-3">
+                                                {{-- <div class="mb-3">
                                                     <label for="desc" class="form-label w-100">Approver</label>
                                                     @php ($prov = json_decode($ad['approver']))
                                                     <select class="js-example-basic-multiple2 form-control w-100"
@@ -178,7 +178,7 @@
                                                     @endforeach>{{ $a['name'] }}</option>
                                                         @endforeach
                                                     </select>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
