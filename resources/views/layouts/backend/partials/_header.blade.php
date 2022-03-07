@@ -23,7 +23,9 @@
                 <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                            <img alt="Image placeholder" src="{{ asset('storage/profile/'.auth('admin')->user()->image) }}">
+                            <img alt="Image placeholder"
+                            onerror="this.src='{{asset('assets/front-end/img/image-place-holder.png')}}'"
+                            src="{{ asset('storage/profile/'.auth('admin')->user()->image) }}">
                         </span>
                         {{-- {{ dd(auth('admin')) }} --}}
                         <div class="media-body ml-2 d-none d-lg-block">

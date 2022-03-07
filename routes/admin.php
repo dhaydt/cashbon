@@ -35,6 +35,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
         Route::get('/user_admin', [UserController::class, 'index'])->name('userAdmin');
         Route::post('/add_admin', [AdminController::class, 'index'])->name('userAdminAdd');
+        Route::post('/update_admin', [AdminController::class, 'update'])->name('updateAdmin');
+        Route::get('/delete_admin', [AdminController::class, 'destroy'])->name('deleteAdmin');
 
         Route::get('export', [ExportController::class, 'export'])->name('export');
         // Project route

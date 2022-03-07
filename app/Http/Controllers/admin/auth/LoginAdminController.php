@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\auth;
 
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class LoginAdminController extends Controller
@@ -20,15 +21,34 @@ class LoginAdminController extends Controller
     public function submit(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'phone' => 'required',
             'password' => 'required|min:6',
         ]);
 
-        if (auth('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            return redirect()->route('admin.dashboard');
+        $user_id = $request->phone;
+        if (filter_var($user_id, FILTER_VALIDATE_EMAIL)) {
+            $medium = 'email';
+        } else {
+            $count = strlen(preg_replace("/[^\d]/", '', $user_id));
+            if ($count >= 9 && $count <= 15) {
+                $medium = 'phone';
+            } else {
+                Toastr::error('Invalid user email or phone number.');
+            }
         }
 
-        return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors(['Password atau email salah.']);
+        if ($medium == 'email') {
+            if (auth('admin')->attempt(['email' => $request->phone, 'password' => $request->password], $request->remember)) {
+                return redirect()->route('admin.dashboard');
+            }
+        }
+        if ($medium == 'phone') {
+            if (auth('admin')->attempt(['phone' => $request->phone, 'password' => $request->password], $request->remember)) {
+                return redirect()->route('admin.dashboard');
+            }
+        }
+
+        return redirect()->back()->withInput($request->only('phone', 'remember'))->withErrors(['Password atau email salah.']);
     }
 
     public function logout(Request $request)

@@ -13,7 +13,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <button type="button" class="btn btn-sm btn-neutral" data-toggle="modal"
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
                         data-target="#modal-form">Add Admin</button>
                     {{-- <a href="#" class="btn btn-sm btn-neutral">Filters</a> --}}
                     <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form"
@@ -25,59 +25,43 @@
                                     <div class="card bg-secondary border-0 mb-0">
                                         <div class="card-body px-lg-5 py-lg-5">
                                             <div class="text-center text-muted mb-4">
-                                                <small>Add Admin</small>
+                                                <small>Tambah Admin</small>
                                             </div>
-                                            <form class="js-validate" role="form" method="POST" action="{{route('admin.userAdminAdd')}}">
+                                            <form class="js-validate" role="form" method="POST" action="{{route('admin.userAdminAdd')}}" autocomplete="off">
                                                 @csrf
                                                 <div class="form-group mb-3">
                                                     <div class="input-group input-group-merge input-group-alternative">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i
-                                                                    class="ni ni-single-02"></i></span>
-                                                        </div>
-                                                        <input class="pl-2 form-control" name="name" placeholder="Name" type="text">
+                                                        <input class="pl-2 form-control" name="name" placeholder="Nama" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-3">
                                                     <div class="input-group input-group-merge input-group-alternative">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i
-                                                                    class="ni ni-mobile-button"></i></span>
-                                                        </div>
-                                                        <input class="pl-2 form-control" name="phone" placeholder="Phone" type="number">
+                                                        <input class="pl-2 form-control" name="phone" placeholder="No. Handphone" type="number">
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-3">
                                                     <div class="input-group input-group-merge input-group-alternative">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i
-                                                                    class="ni ni-email-83"></i></span>
-                                                        </div>
-                                                        <input class="pl-2 form-control" name="email" placeholder="Email" type="email">
+                                                        <select name="role" class="form-control">
+                                                            <option value="">-- Pilih Role Admin --</option>
+                                                            <option value="admin">Admin</option>
+                                                            <option value="staff">Staff</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="input-group input-group-merge input-group-alternative">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i
-                                                                    class="ni ni-lock-circle-open"></i></span>
-                                                        </div>
                                                         <input class="pl-2 form-control" name="password" placeholder="Password"
                                                             type="password">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="input-group input-group-merge input-group-alternative">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i
-                                                                    class="ni ni-lock-circle-open"></i></span>
-                                                        </div>
                                                         <input class="pl-2 form-control" name="c_password" placeholder="Confirm Password"
                                                             type="password">
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="submit" class="btn btn-primary my-4">Add Admin</button>
+                                                    <button type="submit" class="btn btn-primary my-4">Simpan</button>
                                                 </div>
                                             </form>
                                         </div>

@@ -39,15 +39,15 @@
                         <div class="js-form-message form-group{{ $errors->has('email') ? ' has-danger' : '' }} mb-3">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div>
-                                <input class="pl-2 form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                    placeholder="{{ __('Email') }}" type="email" name="email" value="{{ old('email') }}"
-                                    id="signinSrEmail" required data-msg="Please enter a valid email address.">
+                                <input class="pl-2 form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                                    placeholder="{{ __('Phone') }}" type="text" name="phone" value="{{ old('phone') }}"
+                                    required data-msg="Please enter a valid email or phone number.">
                             </div>
-                            @if ($errors->has('email'))
+                            @if ($errors->has('phone'))
                             <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{ $errors->first('email') }}</strong>
+                                <strong>{{ $errors->first('phone') }}</strong>
                             </span>
                             @endif
                         </div>

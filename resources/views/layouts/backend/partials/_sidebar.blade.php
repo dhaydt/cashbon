@@ -169,7 +169,7 @@
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.web-config.index') }}">
+                    <a class="nav-link" href="{{ route('admin.userAdmin') }}">
                         <i class="fas fa-user-cog text-blue"></i> {{ __('Daftar Admin') }}
                     </a>
                 </li>
