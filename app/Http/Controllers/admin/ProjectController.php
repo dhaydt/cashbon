@@ -64,16 +64,12 @@ class ProjectController extends Controller
             'name' => 'required',
             'nilai' => 'required',
             'jenis' => 'required',
-            'nomor' => 'required',
             'pekerja' => 'required',
-            'approver' => 'required',
         ], [
             'nilai.required' => 'Nilai project dibutuhkan!',
             'name.required' => 'Nama project dibutuhkan!',
             'jenis.required' => 'Jenis pekerjaan dibutuhkan!',
-            'nomor.required' => 'Nomor kontrak dibutuhkan!',
             'pekerja.required' => 'Pekerja project dibbutuhkan!',
-            'approver.required' => 'Approver project dibbutuhkan!',
         ]);
 
         $worker = [];
@@ -89,18 +85,18 @@ class ProjectController extends Controller
             array_push($worker, $data);
         }
 
-        $app = [];
-        foreach ($request['approver'] as $a) {
-            $work = Approver::where('id', $a)->first();
-            $phone = $work->phone;
-            $name = $work->name;
-            $data = [
-                'id' => $a,
-                'phone' => $phone,
-                'name' => $name,
-            ];
-            array_push($app, $data);
-        }
+        // $app = [];
+        // foreach ($request['approver'] as $a) {
+        //     $work = Approver::where('id', $a)->first();
+        //     $phone = $work->phone;
+        //     $name = $work->name;
+        //     $data = [
+        //         'id' => $a,
+        //         'phone' => $phone,
+        //         'name' => $name,
+        //     ];
+        //     array_push($app, $data);
+        // }
 
         $data = new Project();
         $data->name = $request['name'];
@@ -109,7 +105,7 @@ class ProjectController extends Controller
         $data->nomor = $request['nomor'];
         $data->sisa = $request['nilai'];
         $data->pekerja = json_encode($worker);
-        $data->approver = json_encode($app);
+        // $data->approver = json_encode($app);
         $data->save();
 
         Toastr::success('Proyek berhasil ditambahkan!');

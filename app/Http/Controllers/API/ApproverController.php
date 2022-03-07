@@ -23,7 +23,7 @@ class ApproverController extends Controller
         }
 
         $id = $driver->id;
-        $project = Project::whereJsonContains('approver', ['id' => (string) $id])->get(['id', 'name']);
+        $project = Cashbon::with('pekerja', 'project')->whereJsonContains('approver', (string) $id)->orderBy('created_at', 'DESC')->pluck('project_id', 'project_id')->toArray();
 
         $data = $driver->where('phone', $cred['phone'])->get(['id', 'name', 'phone']);
 
@@ -47,11 +47,18 @@ class ApproverController extends Controller
             array_push($cashbon, $peng);
         }
 
+        $projects = [];
+        foreach ($project as $pro) {
+            $approv = Project::where('id', $pro)->first(['id', 'name']);
+            array_push($projects, $approv);
+        }
+        // dd($projects);
+
         return response()->json([
             'role' => 'approver',
             'user_data' => $data,
             'pengajuan' => $cashbon,
-            'project' => $project,
+            'project' => $projects,
             'token' => $driver->createToken('mobile', ['role:approver'])->plainTextToken,
         ]);
     }

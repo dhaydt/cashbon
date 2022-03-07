@@ -115,16 +115,18 @@
                         <i class="fas fa-sign-in text-orange"></i> {{ __('Kasbon baru') }}
                     </a>
                 </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ route('admin.cashbon.list', ['search' => 'diproses']) }}">
+                        <i class="fas fa-spinner text-blue"></i> {{ __('Kasbon diproses') }}
+                    </a>
+                </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('admin.cashbon.list', ['search' => 'diterima']) }}">
                         <i class="far fa-check-circle text-success"></i> {{ __('Kasbon diterima') }}
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="{{ route('admin.cashbon.list', ['search' => 'diproses']) }}">
-                        <i class="fas fa-spinner text-blue"></i> {{ __('Kasbon diproses') }}
-                    </a>
-                </li><li class="nav-item ">
                     <a class="nav-link" href="{{ route('admin.cashbon.list', ['search' => 'ditolak']) }}">
                         <i class="fas fa-times text-danger"></i> {{ __('Kasbon ditolak') }}
                     </a>
