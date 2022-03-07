@@ -27,7 +27,7 @@ class ApproverController extends Controller
 
         $data = $driver->where('phone', $cred['phone'])->get(['id', 'name', 'phone']);
 
-        $persetujuan = Cashbon::with('pekerja', 'project')->whereJsonContains('approver_status', ['id' => $id])->get();
+        $persetujuan = Cashbon::with('pekerja', 'project')->whereJsonContains('approver', (string) $id)->where('admin_status', '!=', 'diterima')->orderby('created_at', 'DESC')->get();
 
         $cashbon = [];
         foreach ($persetujuan as $p) {
@@ -81,6 +81,35 @@ class ApproverController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Data persetujuan berhasil dikirim',
+        ]);
+    }
+
+    public function history(Request $request)
+    {
+        $id = $request->user()->id;
+        $cash = Cashbon::with('pekerja', 'project')->whereJsonContains('approver', (string) ($id))->where('diterima_pada', '!=', 'NULL')->orderBy('created_at', 'DESC')->get();
+        $cashbon = [];
+        foreach ($cash as $p) {
+            $peng = [
+                'cashbon_id' => $p->id,
+                'tgl_pengajuan' => $p->diajukan_pada,
+                'nama_pemohon' => $p->pekerja->name,
+                'nama_project' => $p->project->name,
+                'pekerjaan' => $p->keperluan,
+                'nilai_kontrak' => $p->project->nilai_project,
+                'total_kasbon' => $p->project->total_cashbon,
+                'sisa_kasbon' => $p->project->sisa,
+                'pengajuan_kasbon' => $p->pengajuan,
+                'status' => $p->admin_status,
+                'diterima_pada' => $p->diterima_pada,
+                'jumlah_kasbon_disetujui' => $p->dipinjamkan,
+            ];
+            array_push($cashbon, $peng);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'response' => $cashbon,
         ]);
     }
 }

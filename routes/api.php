@@ -36,4 +36,5 @@ Route::middleware(['auth:sanctum', 'customer'])->group(function () {
 Route::middleware(['auth:sanctum', 'approver'])->group(function () {
     Route::put('firebase_token_approver', [NotificationController::class, 'firebase_token_approver']);
     Route::post('kasbon/update', [ApproverController::class, 'updateStatus']);
+    Route::get('kasbon/history/approver', [ApproverController::class, 'history']);
 });
