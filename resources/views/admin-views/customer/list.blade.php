@@ -33,15 +33,13 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="table-responsive" style="overflow: hidden">
+                <div class="table-responsive">
                     <table class="table align-items-center table-flush" >
                         <thead class="thead-light">
                             <tr class="text-center">
                                 <th scope="col" class="sort" data-sort="name">No</th>
                                 <th scope="col" class="sort" data-sort="budget">Nama</th>
                                 <th scope="col" class="sort" data-sort="status">HP</th>
-                                <th scope="col" class="sort" data-sort="status">Proyek</th>
-                                <th scope="col" class="sort" data-sort="status">Kasbon</th>
                                 <th scope="col" class="sort" data-sort="completion">Aksi</th>
                                 <th scope="col"></th>
                             </tr>
@@ -64,23 +62,6 @@
                                     <span class="badge badge-dot mr-4">
                                         {{-- <i class="bg-warning"></i> --}}
                                         <span class="status">{{ $ad['phone'] }}</span>
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge badge-dot mr-4">
-                                        @foreach (json_decode($ad['project']) as $p)
-                                        <span class="status">{{ $p }}</span>
-                                        @endforeach
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge badge-dot mr-4">
-                                        {{-- <i class="bg-warning"></i> --}}
-                                        @if ($ad['cashbon'] == '')
-                                        <span class="status badge badge-danger text-danger">Belum ada</span>
-                                        @else
-                                        <span class="status badge badge-info">{{ $ad['cashbon'] }}</span>
-                                        @endif
                                     </span>
                                 </td>
                                 <td>

@@ -2,6 +2,9 @@
 
 @section('content')
 <style>
+    .main-content{
+        background-color: #fafafa;
+    }
     .container {
         height: 100vh;
         max-height: 100vh;
@@ -13,6 +16,10 @@
 
     .container img {
         height: 80px;
+    }
+    span.input-group-text, a.input-group-text {
+        max-width: 45px !important;
+        min-width: 45px !important;
     }
 </style>
 
@@ -30,7 +37,7 @@
                 <div class="card-body px-lg-5 py-lg-5">
                     <div class="text-center text-muted mb-4">
                         <small>
-                            Admin Area
+                            {{ $web_config['name']['value'] }}
                         </small>
                     </div>
                     <form class="js-validate" role="form" method="POST" action="{{route('admin.auth.adminLogin')}}">

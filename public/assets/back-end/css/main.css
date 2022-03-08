@@ -33,3 +33,7 @@
     color: #828282;
     min-width: 80px;
 }
+
+a.viewUser {
+    font-size: 15px;
+}
