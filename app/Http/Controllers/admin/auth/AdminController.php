@@ -42,7 +42,6 @@ class AdminController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone' => 'unique:admins|min:9',
         ]);
         $user = Admin::find($request['id']);
 
