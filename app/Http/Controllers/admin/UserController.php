@@ -15,6 +15,11 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
+        if (auth('admin')->user()->role != 'admin') {
+            Toastr::warning('Kamu tidak memiliki izin admin');
+
+            return redirect()->route('admin.dashboard');
+        }
         $query_param = [];
         $search = $request['search'];
         if ($request->has('search')) {

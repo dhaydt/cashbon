@@ -13,6 +13,12 @@ class BussinessSettingsController extends Controller
 {
     public function companyInfo()
     {
+        if (auth('admin')->user()->role != 'admin') {
+            Toastr::danger('Kamu tidak memiliki izin admin');
+
+            return redirect()->route('admin.dashboard');
+        }
+
         $company_name = BusinessSetting::where('type', 'company_name')->first();
         $company_email = BusinessSetting::where('type', 'company_email')->first();
         $company_phone = BusinessSetting::where('type', 'company_phone')->first();
