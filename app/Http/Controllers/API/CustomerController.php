@@ -29,7 +29,7 @@ class CustomerController extends Controller
         }
 
         $id = $customer->id;
-        $pekerja = Project::whereJsonContains('pekerja', ['id' => (string) $id])->get(['id', 'name']);
+        $pekerja = Project::whereJsonContains('pekerja', ['id' => (string) $id])->get(['id', 'name', 'jenis']);
 
         $data = $customer->where('phone', $cred['phone'])->get(['id', 'name', 'phone', 'cashbon']);
 
@@ -55,8 +55,7 @@ class CustomerController extends Controller
         $order = new Cashbon();
         $order->pekerja_id = $request->user()->id;
         $order->project_id = $request->project_id;
-        $order->pengajuan = $request->pengajuan;
-        $order->keperluan = $request->pekerjaan;
+        $order->pengajuan = $request->pekerjaan;
         $order->diajukan_pada = Carbon::now();
         $order->approver = json_encode([]);
         $order->approver_status = json_encode([]);
