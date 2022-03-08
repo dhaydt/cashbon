@@ -164,7 +164,7 @@
                 </li>
             </ul> --}}
 
-            <!-- Order Section -->
+            @if (auth('admin')->user()->role == 'admin')
             <h6 class="navbar-heading text-muted">Super Admin Section</h6>
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
@@ -178,17 +178,8 @@
                         <i class="fas fa-cogs text-orange"></i> {{ __('Web config') }}
                     </a>
                 </li>
-                {{-- <li class="nav-item ">
-                    <a class="nav-link" href="{{ route('admin.banner.list') }}">
-                        <i class="fas fa-images text-orange"></i> {{ __('Banner Config') }}
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{ route('admin.payment.index') }}">
-                        <i class="fas fa-money-bill text-blue"></i> {{ __('Payment Config') }}
-                    </a>
-                </li> --}}
             </ul>
+            @endif
         </div>
     </div>
 </nav>
