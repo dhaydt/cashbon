@@ -45,7 +45,7 @@ class CustomerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'pengajuan' => 'required',
-            'pekerjaan' => 'required',
+            // 'pekerjaan' => 'required',
         ]);
 
         if ($validator->fails()) {
