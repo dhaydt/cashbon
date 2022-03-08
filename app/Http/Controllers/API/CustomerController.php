@@ -55,7 +55,8 @@ class CustomerController extends Controller
         $order = new Cashbon();
         $order->pekerja_id = $request->user()->id;
         $order->project_id = $request->project_id;
-        $order->pengajuan = $request->pekerjaan;
+        $order->pengajuan = $request->pengajuan;
+        $order->keperluan = $request->pekerjaan;
         $order->diajukan_pada = Carbon::now();
         $order->approver = json_encode([]);
         $order->approver_status = json_encode([]);
