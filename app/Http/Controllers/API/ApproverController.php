@@ -27,7 +27,7 @@ class ApproverController extends Controller
 
         $data = $driver->where('phone', $cred['phone'])->get(['id', 'name', 'phone']);
 
-        $persetujuan = Cashbon::with('pekerja', 'project')->whereJsonContains('approver', (string) $id)->where('admin_status', '!=', 'diterima')->orderby('created_at', 'DESC')->get();
+        $persetujuan = Cashbon::with('pekerja', 'project')->whereJsonContains('approver_status', ['status' => 'menunggu'])->whereJsonContains('approver', (string) $id)->orderby('created_at', 'DESC')->get();
 
         $cashbon = [];
         foreach ($persetujuan as $p) {
