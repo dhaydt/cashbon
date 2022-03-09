@@ -125,14 +125,18 @@ class ApproverController extends Controller
     {
         $id = $request->user()->id;
         $user = Approver::find($id);
-        $old = $request->old_password;
+        if ($request->new_password != '') {
+            $old = $request->old_password;
 
-        if (!$user || !Hash::check($old, $user['password'])) {
-            return response()->json(['errors' => 'No Handphone atau Password salah'], 403);
+            if (!$user || !Hash::check($old, $user['password'])) {
+                return response()->json(['errors' => 'No Handphone atau Password salah'], 403);
+            }
+            $user->password = bcrypt($request->new_password);
         }
-        $user->password = bcrypt($request->new_password);
+        $user->name = $request->name;
+        $user->phone = $request->phone;
         $user->save();
 
-        return response()->json(['success' => 'Password approver berhasil diganti'], 200);
+        return response()->json(['success' => 'Data approver berhasil diganti'], 200);
     }
 }
