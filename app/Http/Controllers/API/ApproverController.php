@@ -125,6 +125,12 @@ class ApproverController extends Controller
     {
         $id = $request->user()->id;
         $user = Approver::find($id);
+        if ($request->phone != $user->phone) {
+            $check = Approver::where('phone', $request->phone)->first();
+            if ($check) {
+                return response()->json(['errors' => 'No Handphone sudah digunakan'], 403);
+            }
+        }
         if ($request->new_password != '') {
             $old = $request->old_password;
 

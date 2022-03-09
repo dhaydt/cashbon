@@ -116,6 +116,12 @@ class CustomerController extends Controller
         $id = $request->user()->id;
         $user = Customer::find($id);
         $old = $request->old_password;
+        if ($request->phone != $user->phone) {
+            $check = Customer::where('phone', $request->phone)->first();
+            if ($check) {
+                return response()->json(['errors' => 'No Handphone sudah digunakan'], 403);
+            }
+        }
 
         if ($request->new_password != '') {
             $old = $request->old_password;
