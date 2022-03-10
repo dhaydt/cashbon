@@ -60,16 +60,21 @@ class CashbonController extends Controller
         $data->approver_status = json_encode($status);
         $data->admin_status = 'diproses';
         $data->save();
-        $data = [
-            'project' => $data->project->name,
+
+        $project = Project::find($data->project_id);
+
+        $kas = [
+            'project' => $project->name,
             'pekerjaan' => $data->keperluan,
-            'status' => 'diproses',
-            'dipinjamkan' => $data->pengajuan,
+            'status' => $data->admin_status,
+            'dipinjamkan' => $data->dipinjamkan,
         ];
-        foreach ($request['approver'] as $app) {
-            $approver = Approver::find($app);
-            $fcm_token = $approver->device_token;
-            Helpers::send_push_notif_to_device($fcm_token, $data);
+
+        foreach ($request['approver'] as $ap) {
+            $worker = Approver::where('id', $ap)->first();
+            $fcm_token = $worker->device_token;
+            // dd($fcm_token);
+            Helpers::send_push_notif_to_device($fcm_token, $kas);
         }
 
         Toastr::success('Approver berhasil ditambahkan');
