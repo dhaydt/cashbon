@@ -16,9 +16,9 @@ class ExportController extends Controller
         $end = $request['end-date'];
 
         if ($start == $end) {
-            $orders = Cashbon::where('admin_status', 'diterima')->where('created_at', 'like', "%{$start}%")->with('pekerja', 'project', 'approver')->orderBy('updated_at', 'ASC')->get();
+            $orders = Cashbon::where('admin_status', 'diterima')->where('created_at', 'like', "%{$start}%")->with('pekerja', 'project', 'approver')->orderBy('updated_at', 'DESC')->get();
         } else {
-            $orders = Cashbon::where('admin_status', 'diterima')->whereBetween('created_at', [$start, $end])->with('pekerja', 'project', 'approver')->orderBy('updated_at', 'ASC')->get();
+            $orders = Cashbon::where('admin_status', 'diterima')->whereBetween('created_at', [$start, $end])->with('pekerja', 'project', 'approver')->orderBy('updated_at', 'DESC')->get();
         }
 
         $data = [];
