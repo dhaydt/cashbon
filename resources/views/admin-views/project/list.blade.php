@@ -41,7 +41,6 @@
                                 <th scope="col" class="sort" data-sort="name">No</th>
                                 <th scope="col" class="sort" data-sort="budget">Nama Project</th>
                                 <th scope="col" class="sort" data-sort="status">Supplier</th>
-                                <th scope="col" class="sort" data-sort="status">Approver</th>
                                 <th scope="col" class="sort" data-sort="status">Nilai Project</th>
                                 <th scope="col" class="sort" data-sort="status">Total Cashbon</th>
                                 <th scope="col" class="sort" data-sort="status">Sisa</th>
@@ -67,14 +66,6 @@
                                     <span class="badge badge-dot mr-4">
                                         @foreach (json_decode($ad['pekerja']) as $p)
                                         <span class="status capitalize badge badge-info">{{ $p->name }}</span>
-                                        @endforeach
-                                    </span>
-                                </td>
-
-                                <td class="text-center">
-                                    <span class="badge badge-dot mr-4">
-                                        @foreach (json_decode($ad['approver']) as $a)
-                                        <span class="status capitalize badge badge-secondary">{{ $a->name }}</span>
                                         @endforeach
                                     </span>
                                 </td>
