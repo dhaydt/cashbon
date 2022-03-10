@@ -77,7 +77,8 @@ class CustomerController extends Controller
             $item = [
                 'project' => $c->project->name,
                 'jumlah_pengajuan' => $c->pengajuan,
-                'pekerjaan' => $c->keperluan,
+                'pekerjaan' => $c->project->jenis,
+                'keperluan' => $c->keperluan,
                 'tgl_diajukan' => $c->diajukan_pada,
                 'status' => $c->admin_status,
                 'jumlah_kasbon_disetujui' => $c->dipinjamkan,
@@ -98,7 +99,8 @@ class CustomerController extends Controller
             $item = [
                 'project' => $c->project->name,
                 'jumlah_pengajuan' => $c->pengajuan,
-                'pekerjaan' => $c->keperluan,
+                'pekerjaan' => $c->project->jenis,
+                'keperluan' => $c->keperluan,
                 'tgl_diajukan' => $c->diajukan_pada,
                 'status' => $c->admin_status,
                 'jumlah_kasbon_disetujui' => $c->dipinjamkan,
