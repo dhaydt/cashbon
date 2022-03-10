@@ -96,7 +96,7 @@ class CustomerController extends Controller
 
     public function history(Request $request)
     {
-        $casbon = Cashbon::with('pekerja', 'project')->where('pekerja_id', $request->user()->id)->where('diterima_pada', '!=', 'NULL')->orderby('created_at', 'DESC')->get();
+        $casbon = Cashbon::with('pekerja', 'project')->where('pekerja_id', $request->user()->id)->orderby('created_at', 'DESC')->get();
         $data = [];
         foreach ($casbon as $c) {
             $item = [
