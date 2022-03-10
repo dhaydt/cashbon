@@ -82,29 +82,6 @@ projects or assigned tasks'),
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="form-control-label" for="input-name">{{ __('Approver') }}</label>
-                                <div class="row row-json">
-                                    <div class="col-6">
-                                        <label for="form-control-label">Nama Approver</label>
-                                    </div>
-                                    <div class="col-md-5 col-6">
-                                        <label for="form-control-label">No. Handphone</label>
-                                    </div>
-                                    @foreach (json_decode($data->approver) as $p)
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <input type="text" readonly class="form-control" value="{{ $p->name }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 col-6">
-                                            <div class="form-group">
-                                                <input type="text" readonly class="form-control" value="{{ $p->phone }}">
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
                         </div>
                     </form>
                 </div>
