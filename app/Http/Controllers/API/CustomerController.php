@@ -75,11 +75,14 @@ class CustomerController extends Controller
         $data = [];
         foreach ($casbon as $c) {
             $item = [
-                'project' => $c->project->name,
+                'cashbon_id' => $c->id,
+                'nama_pemohon' => $c->pekerja->name,
+                'nama_project' => $c->project->name,
                 'jumlah_pengajuan' => $c->pengajuan,
                 'pekerjaan' => $c->project->jenis,
                 'keperluan' => $c->keperluan,
                 'tgl_diajukan' => $c->diajukan_pada,
+                // 'nilai_kontrak' => $c->project->nilai_project,
                 'status' => $c->admin_status,
                 'jumlah_kasbon_disetujui' => $c->dipinjamkan,
                 'tgl_disetujui' => $c->diterima_pada,
@@ -97,11 +100,14 @@ class CustomerController extends Controller
         $data = [];
         foreach ($casbon as $c) {
             $item = [
-                'project' => $c->project->name,
+                'cashbon_id' => $c->id,
+                'nama_pemohon' => $c->pekerja->name,
+                'nama_project' => $c->project->name,
                 'jumlah_pengajuan' => $c->pengajuan,
                 'pekerjaan' => $c->project->jenis,
                 'keperluan' => $c->keperluan,
                 'tgl_diajukan' => $c->diajukan_pada,
+                // 'nilai_kontrak' => $c->project->nilai_project,
                 'status' => $c->admin_status,
                 'jumlah_kasbon_disetujui' => $c->dipinjamkan,
                 'tgl_disetujui' => $c->diterima_pada,
