@@ -96,6 +96,19 @@ projects or assigned tasks'),
                             <h4 class="field-content capitalize ml-3">{{ $user->project->name }}</h4>
                         </div>
                         <div class="field-group mb-3">
+                            <span class="field-title">Nilai project :</span> <br>
+                            <h4 class="field-content badge badge-warning capitalize ml-3 mt-2">@currency($user->project->nilai_project)
+                            </h4>
+                        </div>
+                        <div class="field-group mb-3">
+                            <span class="field-title">Total Kasbon :</span><br>
+                            <h4 class="field-content badge badge-info capitalize ml-3 mt-2">@currency($user->project->total_cashbon)</h4>
+                        </div>
+                        <div class="field-group mb-3">
+                            <span class="field-title">Sisa :</span><br>
+                            <h4 class="field-content capitalize badge badge-info ml-3 mt-2">@currency($user->project->sisa)</h4>
+                        </div>
+                        <div class="field-group mb-3">
                             <span class="field-title">Keperluan :</span>
                             <h4 class="field-content capitalize ml-3">{{ $user->keperluan }}</h4>
                         </div>
