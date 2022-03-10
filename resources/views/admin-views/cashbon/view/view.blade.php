@@ -102,11 +102,11 @@ projects or assigned tasks'),
                         </div>
                         <div class="field-group mb-3">
                             <span class="field-title">Total Kasbon :</span><br>
-                            <h4 class="field-content badge badge-info capitalize ml-3 mt-2">@currency($user->project->total_cashbon)</h4>
+                            <h4 class="field-content badge badge-info capitalize ml-3 mt-2">@currency($user->total_cashbon)</h4>
                         </div>
                         <div class="field-group mb-3">
                             <span class="field-title">Sisa :</span><br>
-                            <h4 class="field-content capitalize badge badge-info ml-3 mt-2">@currency($user->project->sisa)</h4>
+                            <h4 class="field-content capitalize badge badge-info ml-3 mt-2">@currency($user->sisa)</h4>
                         </div>
                         <div class="field-group mb-3">
                             <span class="field-title">Keperluan :</span>

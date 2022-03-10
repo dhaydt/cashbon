@@ -16,9 +16,9 @@ class ExportController extends Controller
         $end = $request['end-date'];
 
         if ($start == $end) {
-            $orders = Cashbon::where('admin_status', 'diterima')->where('created_at', 'like', "%{$start}%")->with('pekerja', 'project', 'approver')->get();
+            $orders = Cashbon::where('admin_status', 'diterima')->where('created_at', 'like', "%{$start}%")->with('pekerja', 'project', 'approver')->orderBy('updated_at', 'ASC')->get();
         } else {
-            $orders = Cashbon::where('admin_status', 'diterima')->whereBetween('created_at', [$start, $end])->with('pekerja', 'project', 'approver')->get();
+            $orders = Cashbon::where('admin_status', 'diterima')->whereBetween('created_at', [$start, $end])->with('pekerja', 'project', 'approver')->orderBy('updated_at', 'ASC')->get();
         }
 
         $data = [];
@@ -28,13 +28,13 @@ class ExportController extends Controller
                 'tgl_terima' => $order->diterima_pada,
                 'nama' => $order->pekerja->name,
                 'nilai_project' => $order->project->nilai_project,
-                'total_kasbon' => $order->project->total_cashbon,
-                'sisa' => $order->project->sisa,
+                'total_kasbon' => $order->total_cashbon,
+                'sisa' => $order->sisa,
                 'Tipe' => $order->type,
                 'Nota' => $order->no_nota,
                 'nama_project' => $order->project->name,
                 'deskripsi' => $order->keperluan,
-                'jumlah' => '',
+                'jumlah' => $order->dipinjamkan,
             ];
         });
 
@@ -43,13 +43,13 @@ class ExportController extends Controller
                 'tgl_terima' => date('d-M-Y', strtotime($o->diterima_pada)),
                 'nama' => $o->pekerja->name,
                 'nilai_project' => $o->project->nilai_project,
-                'total_kasbon' => $o->project->total_cashbon,
-                'sisa' => $o->project->sisa,
+                'total_kasbon' => $o->total_cashbon,
+                'sisa' => $o->sisa,
                 'Tipe' => $o->type,
                 'Nota' => $o->no_nota,
                 'nama_project' => $o->project->name,
                 'deskripsi' => $o->keperluan,
-                'jumlah' => '',
+                'jumlah' => $o->dipinjamkan,
             ];
             array_push($data, $item);
         }

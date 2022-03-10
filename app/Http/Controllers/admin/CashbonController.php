@@ -138,16 +138,26 @@ class CashbonController extends Controller
         $cash->no_nota = $request['nota'];
         $cash->diterima_pada = Carbon::now();
         $cash->save();
+
         // dd($cash);
 
         // Total Cashbon
         $total = Cashbon::where('project_id', $cash->project_id)->pluck('dipinjamkan')->toArray();
         $sum = array_sum($total);
+        // dd($sum);
+
         $project = Project::find($cash->project_id);
-        $sisa = $project->nilai_project - $sum;
+        $sisa = $project->sisa - $request['nilai'];
+
         $project->total_cashbon = $sum;
         $project->sisa = $sisa;
+
+        $cash->total_cashbon = $sum;
+        $cash->sisa = $sisa;
+
         $project->save();
+        $cash->save();
+
         $data = [
             'project' => $project->name,
             'pekerjaan' => $cash->keperluan,
