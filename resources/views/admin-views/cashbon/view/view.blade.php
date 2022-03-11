@@ -185,7 +185,7 @@ projects or assigned tasks'),
                                     <span id="value{{ $p->id }}" class="value-status">@currency($p->accepted)</span>
                                 </div>
                                 <div class="col text-end">
-                                    @if ($p->status != 'menunggu' && $user->admin_status != 'diterima')
+                                    @if (auth('admin')->user()->role == 'staff' && $p->status != 'menunggu' && $user->admin_status != 'diterima')
                                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop{{ $p->id }}">Proses</button>
                                     @endif
