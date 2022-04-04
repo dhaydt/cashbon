@@ -159,22 +159,22 @@ class ProjectController extends Controller
         }
 
         $app = [];
-        foreach ($request['approver'] as $a) {
-            $work = Approver::where('id', $a)->first();
-            $phone = $work->phone;
-            $name = $work->name;
-            $data = [
-                'id' => $a,
-                'phone' => $phone,
-                'name' => $name,
-            ];
-            array_push($app, $data);
-        }
+        // foreach ($request['approver'] as $a) {
+        //     $work = Approver::where('id', $a)->first();
+        //     $phone = $work->phone;
+        //     $name = $work->name;
+        //     $data = [
+        //         'id' => $a,
+        //         'phone' => $phone,
+        //         'name' => $name,
+        //     ];
+        //     array_push($app, $data);
+        // }
         $project = Project::where('id', $request['id'])->first();
         $project->name = $request['name'];
         $project->nilai_project = $request['nilai'];
         $project->pekerja = json_encode($worker);
-        $project->approver = json_encode($app);
+        // $project->approver = json_encode($app);
         $project->jenis = $request['jenis'];
         $project->nomor = $request['nomor'];
         $project->save();
