@@ -173,11 +173,11 @@
                         <i class="fas fa-user-cog text-blue"></i> {{ __('Daftar Admin') }}
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.web-config.index') }}">
                         <i class="fas fa-cogs text-orange"></i> {{ __('Web config') }}
                     </a>
-                </li>
+                </li> --}}
             </ul>
             @endif
         </div>
